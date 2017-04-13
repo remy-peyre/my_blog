@@ -20,10 +20,33 @@ class DefaultController extends BaseController
             $this->redirect('login');
     }
 
-    public function aboutAction()
+    /*public function aboutAction()
     {
         if (!empty($_SESSION['user_id']))
             echo $this->renderView('about.html.twig');
+        else
+            $this->redirect('login');
+    }*/
+    public function personnagesAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('personnages.html.twig');
+        else
+            $this->redirect('login');
+    }
+
+    public function articlesAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('articles.html.twig');
+        else
+            $this->redirect('login');
+    }
+
+    public function saisonAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('saison.html.twig');
         else
             $this->redirect('login');
     }
