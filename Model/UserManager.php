@@ -70,6 +70,7 @@ class UserManager
             echo(http_response_code(400));
             echo(json_encode(array('success'=>false, 'errors'=>$errors)));
         }
+        return $isFormGood;
     }
 
     public function usernameValid($username){
@@ -91,7 +92,7 @@ class UserManager
         $user['birthday'] = $data['birthday'];
         $this->DBManager->insert('users', $user);
     }
-    
+
     public function userCheckLogin($data)
     {
         if (empty($data['username']) OR empty($data['password']))
@@ -100,13 +101,13 @@ class UserManager
         if ($user === false)
             return false;
         $hash = $this->userHash($data['password']);
-        if ($hash !== $data['password'])
+        if ($hash !== $user['password'])
         {
             return false;
         }
         return true;
-
     }
+
     
     public function userLogin($username)
     {
