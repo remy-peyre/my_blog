@@ -7,4 +7,5 @@
 /vendor
 /composer.phar
 /cache
+/config
 !/cache/twig/.gitkeep
