@@ -1,13 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<form action="?action=register" method="POST">
+    <div id="error-block"></div>
+    <div id="success-block"></div>
+    <form action="?action=register" name="register-form" method="POST">
     Username : <input type="text" name="username"><br>
     Password : <input type="password" name="password"><br>
-    Password : <input type="password" name="verifpassword"><br>
-    Firstname : <input type="text" name="firstname"><br>
-    Lastname : <input type="text" name="lastname"><br>
-    Birthday : <input type="text" placeholder="jj/mm/année" name="birthday"><br>
+    Password : <input type="password" name="verifpassword"/><br>
+    Firstname : <input type="text" name="firstname"/><br>
+    Lastname : <input type="text" name="lastname"/><br>
+    Birthday : <input type="text" placeholder="jj/mm/année" name="birthday"/><br>
     <input type="submit">
 </form>
 {% endblock %}

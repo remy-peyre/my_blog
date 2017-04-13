@@ -35,7 +35,7 @@ class SecurityController extends BaseController
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            var_dump($_POST);
+            //var_dump(userCheckRegister($_POST));
             $manager = UserManager::getInstance();
             if ($manager->userCheckRegister($_POST))
             {
@@ -44,7 +44,7 @@ class SecurityController extends BaseController
             }
             else {
                 $error = "Invalid data";
-            }    
+            }
         }
         echo $this->renderView('register.html.twig', ['error' => $error]);
     }

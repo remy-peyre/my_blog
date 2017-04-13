@@ -35,17 +35,45 @@ class UserManager
     
     public function userCheckRegister($data)
     {
-        if (empty($data['username']) OR empty($data['password']) OR empty($data['firstname'])
-            OR empty($data['lastname']) OR empty($data['birthday'])) {
-            return false;
+        //header('content-type: application/json');
+        //header('Access-Control-Allow-Origin: *');
+        //header('Access-Control-Allow-Methods: GET, POST');
+        header('Access-Control-Allow-Origin: *');
+        header('Content-type: application/json');
+        $isFormGood = true;
+        $errors = array();
+
+        if (!isset($data['username']) || strlen($data['username']) < 4) {
+            $errors['username'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+            $isFormGood = false;
         }
-        /*if(count($data["username"]) < 6)
-            return false;
-        /*$data = $this->getUserByUsername($data['username']);
-        if ($data !== false)
-            return false;*/
-        // TODO : Check valid email
-        return true;
+        if (!isset($data['password']) || strlen($data['password']) < 4
+            || $data['password'] !== $data['verifpassword']) {
+            $errors['password'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+            $isFormGood = false;
+        }
+        if (!isset($data['firstname']) || strlen($data['firstname']) < 4) {
+            $errors['firstname'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+            $isFormGood = false;
+        }
+        if (!isset($data['lastname']) || strlen($data['lastname']) < 4) {
+            $errors['lastname'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+            $isFormGood = false;
+        }
+
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(http_response_code(400));
+            echo(json_encode(array('success'=>false, 'errors'=>$errors)));
+        }
+    }
+
+    public function usernameValid($username){
+        return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
     }
     
     private function userHash($pass)
@@ -68,15 +96,16 @@ class UserManager
     {
         if (empty($data['username']) OR empty($data['password']))
             return false;
-        /*$user = $this->getUserByUsername($data['username']);
+        $user = $this->getUserByUsername($data['username']);
         if ($user === false)
-            return false;*/
-        /*$hash = $this->userHash($data['password']);
+            return false;
+        $hash = $this->userHash($data['password']);
         if ($hash !== $data['password'])
         {
             return false;
-        }*/
+        }
         return true;
+
     }
     
     public function userLogin($username)
