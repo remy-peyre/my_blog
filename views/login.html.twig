@@ -1,14 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="error-block-login"></div>
-    <div id="success-block-login"></div>
-    <form action="?action=login" name="login-form" method="POST">
-        Username : <input type="text" name="username"><br>
-        Password : <input type="password" name="password"><br>
-        <input type="submit">
-    </form>
-
+    <section class="login">
+        <div class="place_login_form">
+            <div id="error-block-login"></div>
+            <div id="success-block-login"></div>
+            <form class="position_form_login" action="?action=login" name="login-form" method="POST">
+                <input type="text" name="username" placeholder="Pseudo *"><br>
+                <input type="password" name="password" placeholder="Mot de Passe *"><br>
+                <input type="submit">
+            </form>
+        </div>
+    </section>
     <script type="text/javascript" src="web/script/ajax-login.js"></script>
 
 {% endblock %}
