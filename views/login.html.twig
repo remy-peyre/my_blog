@@ -1,9 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<form action="?action=login" method="POST">
-    Login : <input type="text" name="username"><br>
-    Password : <input type="password" name="password"><br>
-    <input type="submit">
-</form>
+    <div id="error-block-login"></div>
+    <div id="success-block-login"></div>
+    <form action="?action=login" name="login-form" method="POST">
+        Username : <input type="text" name="username"><br>
+        Password : <input type="password" name="password"><br>
+        <input type="submit">
+    </form>
+
+    <script type="text/javascript" src="web/script/ajax-login.js"></script>
+
 {% endblock %}

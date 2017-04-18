@@ -32,26 +32,30 @@ class UserManager
                                 ['username' => $username]);
         return $data;
     }
+
+
     
     public function userCheckRegister($data)
     {
-        //header('content-type: application/json');
-        //header('Access-Control-Allow-Origin: *');
-        //header('Access-Control-Allow-Methods: GET, POST');
+        header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
-        header('Content-type: application/json');
+        header('Access-Control-Allow-Methods: GET, POST');
         $isFormGood = true;
         $errors = array();
 
-        if (!isset($data['username']) || strlen($data['username']) < 4) {
-            $errors['username'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+        if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
+            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
             $isFormGood = false;
         }
-        if (!isset($data['password']) || strlen($data['password']) < 4
-            || $data['password'] !== $data['verifpassword']) {
-            $errors['password'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+            $errors['password'] = "Veiller saisir un mot de passe valide (minimum : 8 caractères (au moins une lettre majuscule et un number)";
             $isFormGood = false;
         }
+        if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
+            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
+            $isFormGood = false;
+        }
+
         if (!isset($data['firstname']) || strlen($data['firstname']) < 4) {
             $errors['firstname'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
             $isFormGood = false;
@@ -67,16 +71,23 @@ class UserManager
         }
         else
         {
-            echo(http_response_code(400));
-            echo(json_encode(array('success'=>false, 'errors'=>$errors)));
+            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+
         }
         return $isFormGood;
+
     }
+
 
     public function usernameValid($username){
         return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
     }
-    
+
+    public function passwordValid($password){
+        return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
+    }
+
     private function userHash($pass)
     {
         $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
@@ -95,20 +106,65 @@ class UserManager
 
     public function userCheckLogin($data)
     {
-        if (empty($data['username']) OR empty($data['password']))
-            return false;
+        /*header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        $isFormGood = true;
+        $errors = array();
         $user = $this->getUserByUsername($data['username']);
-        if ($user === false)
-            return false;
-        $hash = $this->userHash($data['password']);
-        if ($hash !== $user['password'])
-        {
-            return false;
+        if (empty($data['username']) || $user === false) {
+            $errors['username'] = 'Veuillez saisir un pseudo valide';
+            $isFormGood = false;
         }
-        return true;
+        $hash = $this->userHash($data['password']);
+        if ($user !== false && $hash !== $user['password'] && empty($data['password']))
+        {
+            $errors['password'] = 'Pseudo ou mot de passe incorrect';
+            $isFormGood = false;
+        }
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+
+        }
+        return $isFormGood;
+        */
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        $isFormGood = true;
+        $errorsLogin = array();
+
+        $user = $this->getUserByUsername($data['username']);
+        if (isset($data['username']) && $user === false) {
+            $errorsLogin['username'] = 'pseudo ou mot de passe incorrect';
+            $isFormGood = false;
+        }
+        $hash = $this->userHash($data['password']);
+        if ($user !== false && $hash !== $user['password'])
+        {
+            $errorsLogin['password'] = 'pseudo ou mot de passe incorrect';
+            $isFormGood = false;
+        }
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errorsLogin), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+        }
+        return false;
+
     }
 
-    
+
     public function userLogin($username)
     {
         $data = $this->getUserByUsername($username);
