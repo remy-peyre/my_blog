@@ -93,7 +93,11 @@ class UserManager
         $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
         return $hash;
     }
-    
+
+
+    /**
+     * @param $data
+     */
     public function userRegister($data)
     {
         $user['username'] = $data['username'];
@@ -101,7 +105,7 @@ class UserManager
         $user['firstname'] = $data['firstname'];
         $user['lastname'] = $data['lastname'];
         $user['birthday'] = $data['birthday'];
-        mkdir();
+        mkdir('uploads/'.$user["username"]);
         $this->DBManager->insert('users', $user);
     }
 
@@ -114,8 +118,8 @@ class UserManager
         $errorsLogin = array();
 
         $user = $this->getUserByUsername($data['username']);
-        if (isset($data['username']) && $user === false) {
-            $errorsLogin['username'] = 'pseudo ou mot de passe incorrect';
+        if (isset($data['username']) && $user === true) {
+            $errorsLogin['username'] = 'Ce pseudo existe déjà';
             $isFormGood = false;
         }
         $hash = $this->userHash($data['password']);
@@ -144,6 +148,7 @@ class UserManager
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
+        $_SESSION['user_username'] = $data['username'];
         return true;
     }
 }
