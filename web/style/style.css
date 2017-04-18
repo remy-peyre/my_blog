@@ -61,10 +61,26 @@ time, mark, audio, video {
 /*----------------*/
 /*-----FOOTER-----*/
 /*----------------*/
-footer{
-	width: auto;
+.img_footer{
+	background-image: url("../img/footer.jpeg");
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: local;
+	width: 100%;
+	height: 198px;
+	display: flex;
+	flex-direction: column;
+	color: #ffffff;
 }
-
+.copyright{
+	font-size: 13px;
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 15px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
 /*----------------*/
 /*--- REGISTER ----*/
 /*----------------*/
@@ -72,7 +88,7 @@ footer{
 	font-family: bold;
 }
 .register{
-	background-image: url("https://s3-eu-west-1.amazonaws.com/blogs-assets-prod-itwapp/blog/uploads/2016/10/06155025/Bann_TWD-01.png");
+	background-image: url("../img/img-register.png");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -86,9 +102,7 @@ footer{
 	flex-direction: column;
 	color: #e84047;
 	font-size: 16px;
-}
-.position_form_register{
-	margin-top: 16%;
+	padding-top: 16%;
 }
 .register input[type="text"],
 .register input[type="password"] {
