@@ -101,39 +101,12 @@ class UserManager
         $user['firstname'] = $data['firstname'];
         $user['lastname'] = $data['lastname'];
         $user['birthday'] = $data['birthday'];
+        mkdir();
         $this->DBManager->insert('users', $user);
     }
 
     public function userCheckLogin($data)
     {
-        /*header('Content-Type: application/json; charset=utf-8');
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
-        $isFormGood = true;
-        $errors = array();
-        $user = $this->getUserByUsername($data['username']);
-        if (empty($data['username']) || $user === false) {
-            $errors['username'] = 'Veuillez saisir un pseudo valide';
-            $isFormGood = false;
-        }
-        $hash = $this->userHash($data['password']);
-        if ($user !== false && $hash !== $user['password'] && empty($data['password']))
-        {
-            $errors['password'] = 'Pseudo ou mot de passe incorrect';
-            $isFormGood = false;
-        }
-        if($isFormGood)
-        {
-            json_encode(array('success'=>true, 'user'=>$_POST));
-        }
-        else
-        {
-            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
-            exit(0);
-
-        }
-        return $isFormGood;
-        */
         header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST');
@@ -160,14 +133,13 @@ class UserManager
             echo(json_encode(array('success'=>false, 'errors'=>$errorsLogin), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
             exit(0);
         }
-        return false;
+        return $isFormGood;
 
     }
 
 
     public function userLogin($username)
     {
-        //var_dump($username);
         $data = $this->getUserByUsername($username);
         if ($data === false)
             return false;

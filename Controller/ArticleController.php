@@ -12,7 +12,6 @@ class ArticleController extends BaseController
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            $error = "Okais";
             $manager = ArticleManager::getInstance();
             if (!empty($manager->userCheckArticle($_POST)))
             {

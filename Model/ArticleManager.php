@@ -67,9 +67,7 @@ class ArticleManager
         $article['content'] = $data['content'];
         $article['image'] = $data['image'];
         $article['user_id'] = $_SESSION['user_id'];
-        var_dump($article);
-        //$this->DBManager->insert
-        //$this->DBManager->insert('users', $user);
+        $this->DBManager->insert('articles', $article);
     }
 
 }
