@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<form action="?action=add_article" enctype="multipart/form-data" method="POST">
+    titre : <input type="text" name="title"><br>
+    text : <textarea name="content" >Enter text here...</textarea><br>
+    <input type="file" name="add_file"><br>
+    <input type="submit">
+</form>
+{% endblock %}

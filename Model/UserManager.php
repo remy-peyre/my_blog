@@ -167,6 +167,7 @@ class UserManager
 
     public function userLogin($username)
     {
+        //var_dump($username);
         $data = $this->getUserByUsername($username);
         if ($data === false)
             return false;
