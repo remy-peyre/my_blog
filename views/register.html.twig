@@ -1,18 +1,21 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="error-block"></div>
-    <div id="success-block"></div>
-    <form action="?action=register" name="register-form" method="POST">
-        Username : <input type="text" name="username"><br>
-        Password : <input type="password" name="password"><br>
-        Password : <input type="password" name="verifpassword"/><br>
-        Firstname : <input type="text" name="firstname"/><br>
-        Lastname : <input type="text" name="lastname"/><br>
-        Birthday : <input type="text" placeholder="jj/mm/année" name="birthday"/><br>
-        <input type="submit">
-    </form>
-
+    <section class="register">
+        <div class="place_register_form">
+            <div id="error-block"></div>
+            <div id="success-block"></div>
+            <form class="position_form_register" action="?action=register" name="register-form" method="POST">
+                <input type="text" name="username" placeholder="Pseudo *"><br>
+                <input type="password" name="password" placeholder="Mot de Passe *"><br>
+                <input type="password" name="verifpassword" placeholder="Vérification MdP *"><br>
+                <input type="text" name="firstname" placeholder="Prénom *"><br>
+                <input type="text" name="lastname" placeholder="Nom *"><br>
+                <input type="text" placeholder="Date de naissance xx/xx/xxxx" name="birthday"><br>
+                <input type="submit">
+            </form>
+        </div>
+    </section>
     <script type="text/javascript" src="web/script/ajax-register.js"></script>
 
 {% endblock %}
