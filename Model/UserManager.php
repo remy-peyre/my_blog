@@ -48,7 +48,7 @@ class UserManager
             $isFormGood = false;
         }
         if(!isset($data['password']) || !$this->passwordValid($data['password'])){
-            $errors['password'] = "Veiller saisir un mot de passe valide (minimum : 8 caractères (au moins une lettre majuscule et un number)";
+            $errors['password'] = "Veiller saisir un mot de passe valide ".'<br>'."Minimum : 8 caractères avec au moins une lettre majuscule et un nombre)";
             $isFormGood = false;
         }
         if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
