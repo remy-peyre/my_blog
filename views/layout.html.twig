@@ -24,6 +24,9 @@
         {% if error is defined and error is not empty %}
             <p class="error">Error : {{ error }}</p>
         {% endif %}
+        {% if error is defined and userArticles is not empty %}
+            <p class="userArticles">Error : {{ userAticles }}</p>
+        {% endif %}
         {% block content %}{% endblock %}
         <footer>
             <div class="img_footer">
