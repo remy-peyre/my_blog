@@ -304,3 +304,6 @@ input::placeholder {
 	width: 110px;
 	height: 30px;
 }
+.logo:hover{
+	content: url("../img/logo-noir.png");
+}
