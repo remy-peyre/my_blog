@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    {% for article in userArticles %}
+        <div>
+            <h1> {{ article['title'] }} </h1>
+            {{ article['image'] }}
+            {{ dump(article) }}
+            <img src="my_blog/uploads/aaaaaa1A/lomm.png" alt="img">
+            <p>{{ article['content'] }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

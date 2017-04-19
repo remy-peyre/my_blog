@@ -41,12 +41,9 @@ class ArticleManager
             $isFormGood = false;
         }
         if($isFormGood){
-            //var_dump($data);
             return $data;
         }
     }
-
-
     public function userInsertArticle($data)
     {
         $pathImage = 'uploads/'.$_SESSION['user_username'].'/'.$data['image'];
@@ -54,12 +51,17 @@ class ArticleManager
         $article['content'] = $data['content'];
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
+        $article['date'] = $this->getDatetimeNow();
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
     }
 
     public function userArticles(){
         $id_user = $_SESSION['user_id'];
-        $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :id_user ORDER BY DATE DESC', ['user_id' => $id_user]);
+        return $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id ORDER BY DATE DESC', ['user_id' => $id_user]);
+    }
+    public function getDatetimeNow() {
+        date_default_timezone_set('Europe/Paris');
+        return date("Y-m-d H:i:s");
     }
 }
