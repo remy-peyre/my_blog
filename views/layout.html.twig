@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>OOP MVC</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=0.2">
+        <title>The walking dead</title>
         <link rel="stylesheet" href="web/style/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="web/script/script.js"></script>
@@ -12,7 +13,7 @@
     <body>
         <header>
             <div class="topnav" id="myTopnav">
-                <a href="?action=home"><img class="logo" src="web/img/logo-blanc.png"></a>
+                <a href="?action=home"><img class="logo" src="web/img/logo-blanc.png" alt="the walking dead logo navigation"></a>
                 <a href="?action=home">Accueil</a>
                 <a href="?action=personnages">Personnages</a>
                 <a href="?action=articles">Articles</a>
@@ -26,20 +27,81 @@
         {% endif %}
         {% block content %}{% endblock %}
         <footer>
-            <div class="img_footer">
-                <div class="copyright">
-                    Copyright © 2017 The Walking Dead by Cheikh-omar & Rémy
+            <div class="square_footer">
+                <ul class="footer_left">
+                    <li class="footer_left_title">
+                        <a href="?action=home">
+                            A voir :
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=home">
+                            Accueil
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="?action=personnages">
+                            Personnages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=articles">
+                            Articles
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=saison">
+                            Saison 8
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="colum_log_social">
+                <div class="join_us">
+                    <a class="place" href="?action=register">REJOINS NOUS</a>
+                </div>
+                <div>
+                    <a href="http://www.amc.com/shows/the-walking-dead">
+                        <img class="bg_social amc" src="web/img/footer/amc.png" alt="redirection vers AMC">
+                    </a>
+                    <a href="https://www.facebook.com/TheWalkingDeadFR">
+                        <img class="bg_social fb" src="web/img/footer/facebook.png" alt="redirection vers Facebook">
+                    </a>
+                    <a href="https://fr.pinterest.com/happyhermit/the-walking-dead/">
+                        <img class="bg_social pinterest" src="web/img/footer/pinterest.png" alt="redirection vers Pinterest">
+                    </a>
+                    <a href="https://twitter.com/walkingdead_amc?lang=fr">
+                        <img class="bg_social twitter" src="web/img/footer/twitter.png" alt="redirection vers Twitter">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=BvQy5_OHJUM">
+                        <img class="bg_social youtube" src="web/img/footer/youtube.png" alt="redirection vers Youtube">
+                    </a>
                 </div>
                 <div class="copyright">
-                    Copyright © 2017 The Walking Dead by Cheikh-omar & Rémy
-                </div>
-                <div class="copyright">
-                    Copyright © 2017 The Walking Dead by Cheikh-omar & Rémy
+                    Copyright © 2017
+                    <br>by Cheikh-omar & Rémy
                 </div>
             </div>
-            <!--<div class="copyright">
-                Copyright © 2017 The Walking Dead by Cheikh-omar & Rémy
-            </div>-->
+            <div class="square_footer">
+                <ul class="footer_right">
+                    <li class="footer_right_title">
+                        <a href="?action=home">
+                            Partenaires :
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.amc.com/shows/the-walking-dead">
+                            AMC
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://the-walking-dead.net">
+                            TWD FRANCE
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </footer>
     </body>
 </html>

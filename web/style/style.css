@@ -14,7 +14,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	font-family: 'Open Sans', sans-serif;
-
+	text-decoration: none;
 }
 
 /*----------------*/
@@ -61,26 +61,97 @@ time, mark, audio, video {
 /*----------------*/
 /*-----FOOTER-----*/
 /*----------------*/
-.img_footer{
-	background-image: url("../img/footer.jpeg");
-	background-position: bottom;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: local;
+
+footer{
 	width: 100%;
-	height: 198px;
+	height: 160px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #333333;
+}
+
+.footer_left > li{
+	color: #ffa000;
+	font-size: 14px;
+	list-style: none;
+	margin-top: 1px;
+	text-align: center;
+}
+.footer_left>li>a{
+	color: inherit;
+}
+.footer_left_title{
+	text-decoration: underline;
+}
+.colum_log_social{
 	display: flex;
 	flex-direction: column;
-	color: #ffffff;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-content: stretch;
+}
+.join_us{
+	text-align: center;
+	padding-bottom: 10px;
+}
+.place{
+	color: #ffa000;
+	text-decoration: none;
+
+}
+.square_footer{
+	width: 25%;
+	height: 105px;
+	background-color: #555555;
+	box-shadow: inset 0 0 10px #333;
+}
+.bg_social{
+	border-radius: 7px;
+	width: 32px;
+}
+.amc{
+	padding-bottom: 7px;
+}
+.amc:hover{
+	content: url("../img/footer/amc-hover.png");
+}
+.fb:hover{
+	content: url("../img/footer/facebook-hover.png");
+}
+.twitter:hover{
+	content: url("../img/footer/twitter-hover.png");
+}
+.pinterest:hover{
+	content: url("../img/footer/pinterest-hover.png");
+}
+.youtube:hover{
+	content: url("../img/footer/youtube-hover.png");
 }
 .copyright{
-	font-size: 13px;
-	display: flex;
-	justify-content: flex-end;
-	margin-right: 15px;
-	padding-top: 4px;
-	padding-bottom: 4px;
+	text-align: center;
+	margin-top: 5px;
+	color: #989494;
+	font-size: 12px;
 }
+
+.footer_right > li{
+	color: #ffa000;
+	font-size: 14px;
+	list-style: none;
+	margin-top: 1px;
+	text-align: center;
+}
+.footer_right>li>a{
+	color: inherit;
+}
+.footer_right_title{
+	text-decoration: underline;
+}
+
+
 
 /*----------------*/
 /*--- REGISTER ----*/
