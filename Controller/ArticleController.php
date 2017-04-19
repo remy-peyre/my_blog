@@ -16,12 +16,21 @@ class ArticleController extends BaseController
                 $manager = ArticleManager::getInstance();
                 if (!empty($manager->userCheckArticle($_POST))) {
                     $manager->userInsertArticle($manager->userCheckArticle($_POST));
-                    //$userArticles = $manager->userArticles();
                 } else {
                     $error = "Invalid username or password";
                 }
             }
             echo $this->renderView('add_article.html.twig', ['userArticles' => $userArticles]);
+        }
+        else
+            $this->redirect('login');
+    }
+    public function edit_articleAction()
+    {
+        if (!empty($_SESSION['user_id'])) {
+            $manager = ArticleManager::getInstance();
+            $userArticles = $manager->userArticles();
+            echo $this->renderView('edit_article.html.twig', ['userArticles' => $userArticles]);
         }
         else
             $this->redirect('login');

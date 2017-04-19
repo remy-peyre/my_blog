@@ -41,7 +41,6 @@ class ArticleManager
             $isFormGood = false;
         }
         if($isFormGood){
-            //var_dump($data);
             return $data;
         }
     }
@@ -53,7 +52,6 @@ class ArticleManager
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
         $article['date'] = $this->getDatetimeNow();
-        var_dump($article['date']);
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
     }
