@@ -86,6 +86,9 @@ footer{
 .footer_left_title{
 	text-decoration: underline;
 }
+.articles{
+	display : none;
+}
 .colum_log_social{
 	display: flex;
 	flex-direction: column;
