@@ -52,6 +52,7 @@ class ArticleManager
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
         $article['date'] = $this->getDatetimeNow();
+        $article['matricule'] = $this->RandomString();
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
     }
@@ -66,5 +67,15 @@ class ArticleManager
     public function getDatetimeNow() {
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");
+    }
+
+    public function RandomString()
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randstring = '';
+        for ($i = 0; $i < 20; $i++) {
+            $randstring .= $characters[mt_rand(0, strlen($characters))];
+        }
+        return $randstring;
     }
 }

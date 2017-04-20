@@ -34,8 +34,12 @@ class DefaultController extends BaseController
 
     public function articlesAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('articles.html.twig');
+        if (!empty($_SESSION['user_id'])) {
+            $articles = ArticleManager::getInstance();
+            $AllUsersArticles = $articles->AllUsersArticles();
+            echo $this->renderView('articles.html.twig',
+                                    ['AllUsersArticles' => $AllUsersArticles]);
+        }
         else
             $this->redirect('login');
     }

@@ -7,7 +7,8 @@
     {% for article in AllUsersArticles %}
         <div>
             {% set title = article['title'] %}
-            <h1><a href="?action=articles&article="> {{ title }}</a></h1>
+            {% set matricule = article['matricule'] %}
+            <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
 
             {% set img = article['image'] %}
             <img src="{{ img }}"/>

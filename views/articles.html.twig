@@ -2,4 +2,17 @@
 
 {% block content %}
 <h1>ARTICLES</h1>
+    {% for article in AllUsersArticles %}
+        {% set title = article['title'] %}
+        {% set matricule = article['matricule'] %}
+        {% set img = article['image'] %}
+        <section>
+            <article id="{{ matricule }}">
+                <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
+                <img src="{{ img }}"/>
+                <p>{{ article['content'] }}</p>
+            </article>
+        </section>
+    {% endfor %}
+    <script type="text/javascript" src="web/script/showArticles.js"></script>
 {% endblock %}
