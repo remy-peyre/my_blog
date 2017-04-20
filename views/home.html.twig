@@ -8,6 +8,7 @@
         {% set title = article['title'] %}
         {% set matricule = article['matricule'] %}
         {% set img = article['image'] %}
+        {% set username = AllUsernames[article['user_id']] %}
         <article class="content_article">
             <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
             <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>

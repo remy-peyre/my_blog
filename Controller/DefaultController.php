@@ -13,11 +13,16 @@ class DefaultController extends BaseController
         if (!empty($_SESSION['user_id']))
         {
             $manager = UserManager::getInstance();
-            $user = $manager->getUserById($_SESSION['user_id']);
+            //$user = $manager->getUserById($_SESSION['user_id']);
             $articles = ArticleManager::getInstance();
             $AllUsersArticles = $articles->AllUsersArticles();
+            $AllUsernames = array();
+            foreach($AllUsersArticles as $article){
+                $user = $manager->getUserById((int)$article['user_id']);
+                $AllUsernames[(int)$article['user_id']] = $user['username'];
+            }
             echo $this->renderView('home.html.twig',
-                                   ['name' => $user['username'], 'AllUsersArticles' => $AllUsersArticles]);
+                                   ['AllUsersArticles' => $AllUsersArticles, 'AllUsernames'=>$AllUsernames]);
         }
         else
             $this->redirect('login');
