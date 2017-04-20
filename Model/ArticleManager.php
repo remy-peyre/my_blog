@@ -60,6 +60,9 @@ class ArticleManager
         $id_user = $_SESSION['user_id'];
         return $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id ORDER BY DATE DESC', ['user_id' => $id_user]);
     }
+    public function AllUsersArticles(){
+        return $this->DBManager->findAllSecure('SELECT * FROM articles ORDER BY DATE DESC');
+    }
     public function getDatetimeNow() {
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");

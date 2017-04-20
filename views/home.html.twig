@@ -4,4 +4,14 @@
 <h1>Hello {{ name }} !</h1>
     <p>HOME</p>
     <br>
+    {% for article in AllUsersArticles %}
+        <div>
+            {% set title = article['title'] %}
+            <h1><a href="?action=articles&article="> {{ title }}</a></h1>
+
+            {% set img = article['image'] %}
+            <img src="{{ img }}"/>
+            {{ article['content'] }}
+        </div>
+    {% endfor %}
 {% endblock %}

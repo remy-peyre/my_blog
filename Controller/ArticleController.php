@@ -25,6 +25,7 @@ class ArticleController extends BaseController
         else
             $this->redirect('login');
     }
+
     public function edit_articleAction()
     {
         if (!empty($_SESSION['user_id'])) {

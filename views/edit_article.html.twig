@@ -7,8 +7,8 @@
             <h1> {{ article['title'] }} </h1>
 
             {% set img = article['image'] %}
-            {{ img }}
-            <img src="{{img}}"/>
+            <img src="{{ img }}"/>
+            {{ article['content'] }}
         </div>
     {% endfor %}
 {% endblock %}

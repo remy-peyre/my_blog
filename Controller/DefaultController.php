@@ -3,6 +3,8 @@
 namespace Controller;
 
 use Model\UserManager;
+use Model\ArticleManager;
+
 
 class DefaultController extends BaseController
 {
@@ -12,21 +14,16 @@ class DefaultController extends BaseController
         {
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
-            
+            $articles = ArticleManager::getInstance();
+            $AllUsersArticles = $articles->AllUsersArticles();
             echo $this->renderView('home.html.twig',
-                                   ['name' => $user['username']]);
+                                   ['name' => $user['username'], 'AllUsersArticles' => $AllUsersArticles]);
         }
         else
             $this->redirect('login');
     }
 
-    /*public function aboutAction()
-    {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('about.html.twig');
-        else
-            $this->redirect('login');
-    }*/
+
     public function personnagesAction()
     {
         if (!empty($_SESSION['user_id']))
@@ -50,4 +47,5 @@ class DefaultController extends BaseController
         else
             $this->redirect('login');
     }
+
 }
