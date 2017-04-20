@@ -269,7 +269,7 @@ input::placeholder {
 .login input[type="button"] {
 	display: block;
 	padding: 10px 20px 10px 20px;
-	color: #FFF;
+	color: #ffffff;
 	margin: 6px auto;
 	background: #1abc9c;
 	font-size: 18px;
@@ -284,10 +284,21 @@ input::placeholder {
 	text-align: center;
 }
 .login input[type="submit"]:hover,
-.login input[type="button"]:hover
-{
+.login input[type="button"]:hover,
+.button_logToREG:hover{
 	background: #109177;
 }
+.button_logToREG{
+	padding: 7px 0px 7px 15px;
+	border: 1px solid #3e4644;
+	background: #00332d;
+	color: #c8e2c3;
+	width: 45%;
+	margin-left: 25%;
+}
+
+
+
 
 /*----------------*/
 /*--- ACCUEIL ----*/
