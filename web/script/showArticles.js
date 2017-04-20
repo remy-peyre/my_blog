@@ -12,11 +12,8 @@ window.onload = function() {
         }
         return vars;
     }
-    var deco_var = decodeURI( $_GET( 'article' ) );
-    console.log(deco_var);
+    var matricule = decodeURI( $_GET( 'article' ) );
 
-    var section = document.querySelectorAll(".articles");
-    var showMe = document.getElementById(deco_var);
-    console.log(showMe);
+    var showMe = document.getElementById(matricule);
     showMe.style.display = "block";
 }

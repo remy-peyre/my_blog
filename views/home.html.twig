@@ -5,14 +5,14 @@
     <p>HOME</p>
     <br>
     {% for article in AllUsersArticles %}
-        <div>
-            {% set title = article['title'] %}
-            {% set matricule = article['matricule'] %}
+        {% set title = article['title'] %}
+        {% set matricule = article['matricule'] %}
+        {% set img = article['image'] %}
+        <article class="content_article">
             <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
-
-            {% set img = article['image'] %}
-            <img src="{{ img }}"/>
-            {{ article['content'] }}
-        </div>
+            <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
+            <a href="?action=articles&article={{ matricule }}"><img  class="size_img_article" src="{{ img }}"/></a>
+            <p class="text_article">{{ article['content'] }}</p>
+        </article>
     {% endfor %}
 {% endblock %}
