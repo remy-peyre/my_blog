@@ -14,4 +14,9 @@ window.onload = function() {
     }
     var deco_var = decodeURI( $_GET( 'article' ) );
     console.log(deco_var);
+
+    var section = document.querySelectorAll(".articles");
+    var showMe = document.getElementById(deco_var);
+    console.log(showMe);
+    showMe.style.display = "block";
 }
