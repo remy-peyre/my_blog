@@ -1,13 +1,12 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
     {% for article in userArticles %}
-        <section>
-            <article>
+            <article class="content_article">
                 <h1> {{ article['title'] }} </h1>
+                <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
                 {% set img = article['image'] %}
                 <img src="{{ img }}"/>
-                <p>{{ article['content'] }}</p>
+                <p class="text_article">{{ article['content'] }}</p>
             </article>
-        </section>
     {% endfor %}
 {% endblock %}

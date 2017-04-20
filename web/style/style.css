@@ -385,3 +385,31 @@ input::placeholder {
 	color:red;
 	font-weight:normal;
 }
+
+/*----------------*/
+/*-- EDIT-ARTIC --*/
+/*----------------*/
+.content_article{
+	width: 80%;
+	margin: 15px 10% 15px 10%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	border-bottom: 1px dashed #f1f1f1 !important;
+	padding-bottom: 15px;
+}
+.content_article > h1{
+	font-size: 26px;
+}
+.custom_name{
+	font-style: italic;
+	font-weight: bold;
+}
+.date_article{
+	font-size: 12px;
+}
+.text_article{
+	font-size: 18px;
+
+}

@@ -31,7 +31,8 @@ class ArticleController extends BaseController
         if (!empty($_SESSION['user_id'])) {
             $manager = ArticleManager::getInstance();
             $userArticles = $manager->userArticles();
-            echo $this->renderView('edit_article.html.twig', ['userArticles' => $userArticles]);
+            $username = $_SESSION['user_username'];
+            echo $this->renderView('edit_article.html.twig', ['userArticles' => $userArticles, 'username' => $username]);
         }
         else
             $this->redirect('login');
