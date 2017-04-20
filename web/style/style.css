@@ -422,5 +422,7 @@ input::placeholder {
 }
 .text_article{
 	font-size: 18px;
-
+}
+.size_img_article{
+	max-height: 300px;
 }

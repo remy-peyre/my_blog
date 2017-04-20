@@ -5,7 +5,7 @@
                 <h1> {{ article['title'] }} </h1>
                 <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
                 {% set img = article['image'] %}
-                <img src="{{ img }}"/>
+                <img class="size_img_article" src="{{ img }}"/>
                 <p class="text_article">{{ article['content'] }}</p>
             </article>
     {% endfor %}
