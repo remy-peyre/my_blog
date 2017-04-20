@@ -428,4 +428,5 @@ input::placeholder {
 }
 .size_img_article{
 	max-height: 300px;
+	width: 100%;
 }
