@@ -6,5 +6,8 @@
     },
     "autoload": {
         "psr-4": { "": "." }
+    },
+    "extra": {
+        "symfony-assets-install":"symlink"
     }
 }
