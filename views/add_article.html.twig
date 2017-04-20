@@ -2,20 +2,32 @@
 
 {% block content %}
     <section class="add_article">
-        <form action="?action=add_article" enctype="multipart/form-data" method="POST">
+        <!--<form action="?action=add_article" enctype="multipart/form-data" method="POST">
             titre : <input type="text" name="title"><br>
             text : <textarea name="content" placeholder="Enter text here..."></textarea><br>
             <input type="file" name="add_file"><br>
             <input type="submit">
-        </form>
-        <!--<div class="form-style-3">
-            <form>
-                <fieldset><legend>Message</legend>
-                    <label for="field6">
-                        <span>Message
+        </form>-->
+        <div class="add_article_form">
+            <form action="?action=add_article" enctype="multipart/form-data" method="POST">
+                <fieldset><legend>Créer un article</legend>
+                    <label>
+                        <span>Titre
                             <span class="required">*</span>
                         </span>
-                        <textarea name="field6" class="textarea-field"></textarea>
+                        <input type="text" name="title">
+                    </label>
+                    <label>
+                        <span>Image
+                            <span class="required">*</span>
+                        </span>
+                        <input type="file" name="add_file">
+                    </label>
+                    <label for="content">
+                        <span>Contenu
+                            <span class="required">*</span>
+                        </span>
+                        <textarea name="content" placeholder="Enter text here..."></textarea></textarea>
                     </label>
                     <label>
                         <span>&nbsp;</span>
@@ -23,6 +35,6 @@
                     </label>
                 </fieldset>
             </form>
-        </div>-->
+        </div>
     </section>
 {% endblock %}
