@@ -23,10 +23,10 @@ class DefaultController extends BaseController
     }
 
 
-    public function personnagesAction()
+    public function profilAction()
     {
         if (!empty($_SESSION['user_id']))
-            echo $this->renderView('personnages.html.twig');
+            echo $this->renderView('profil.html.twig');
         else
             $this->redirect('login');
     }

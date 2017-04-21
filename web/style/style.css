@@ -16,7 +16,9 @@ time, mark, audio, video {
 	font-family: 'Open Sans', sans-serif;
 	text-decoration: none;
 }
-
+body{
+	background-color: #f6f7f9;
+}
 /*----------------*/
 /*-----NAVBAR-----*/
 /*----------------*/
@@ -85,9 +87,6 @@ footer{
 }
 .footer_left_title{
 	text-decoration: underline;
-}
-.articles{
-	display : none;
 }
 .colum_log_social{
 	display: flex;
@@ -316,6 +315,11 @@ input::placeholder {
 .part_right_home{
 	display: none;
 }
+.color_title_home{
+	color: #000;
+}
+
+
 
 /*----------------*/
 /*-- ADD-ARTICLE --*/
@@ -429,8 +433,29 @@ input::placeholder {
 }
 .text_article{
 	font-size: 18px;
+	margin-top: 3px;
 }
 .size_img_article{
 	max-height: 300px;
 	width: 100%;
+}
+
+/*----------------*/
+/*---- ARTICLE ---*/
+/*----------------*/
+.articles{
+	display : none;
+	width: 100%;
+	padding-left: 10%;
+}
+.size_for_one_article{
+	width: 80%;
+}
+.custom_text_article{
+	font-size: 16px;
+	margin: 8px 0px 12px 0px;
+}
+.custom_title_article{
+	line-height: 1.5em;
+	font-size: 26px;
 }

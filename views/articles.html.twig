@@ -1,16 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<h1>ARTICLES</h1>
     {% for article in AllUsersArticles %}
         {% set title = article['title'] %}
         {% set matricule = article['matricule'] %}
         {% set img = article['image'] %}
         <section class="articles" id="{{ matricule }}">
             <article>
-                <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
-                <img src="{{ img }}"/>
-                <p>{{ article['content'] }}</p>
+                <h2 class="custom_title_article">{{ title }}</h2>
+                <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
+                <p class="custom_text_article">{{ article['content'] }}</p>
             </article>
         </section>
     {% endfor %}
