@@ -454,8 +454,11 @@ input::placeholder {
 	margin-top: 3px;
 }
 .size_img_article{
-	max-height: 300px;
+	max-height: 250px;
 	width: 100%;
+}
+.size_link{
+	height: 250px;
 }
 
 /*----------------*/
@@ -490,10 +493,9 @@ input::placeholder {
 	padding-left: 10%;
 }
 
-
-/*----------------*/
-/*---- Profil  ---*/
-/*----------------*/
+/*----------------/
+/---- Profil  ---/
+/----------------*/
 .profil{
 	width: 100%;
 	background-color: #ECECEC;
@@ -519,16 +521,14 @@ input::placeholder {
 	align-content: stretch;
 	padding-bottom: 15px;
 }
-/*.square_profil{
-	width: 100px;
-	height: 100px;
-}*/
+/*square_profil{
+	 width: 100px;
+	 height: 100px;
+ }*/
 .avatar{
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 	border: 3px solid #ECECEC;
-	margin-top: -19%;
+	margin-top: -50px;
 }
-
-

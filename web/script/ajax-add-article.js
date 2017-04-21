@@ -1,31 +1,35 @@
-window.onload = function() {
-    var errorBlockAddArticle = document.querySelector('#error-block-add-article');
-    document.forms['add-article-form'].onsubmit = function () {
-        errorBlockAddArticle.innerHTML = '';
-        var params = 'title=' + this.elements['title'].value;
-        params += '&image=' + this.elements['image'].addEventListener('change', function() {
-                return this.files[0].name;
-            });
-        //params += '&image=' + this.elements['image'].value;
-        params += '&content=' + this.elements['content'].value;
-        var httpAddArticle = new XMLHttpRequest();
-        httpAddArticle.open("POST", "?action=add-article", true);
-        var url = "?action=add_article";
-        httpAddArticle.open("POST", url, true);
-        httpAddArticle.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        console.log(this.elements['image'].value);
-        httpAddArticle.onload = function () {
-            if (httpAddArticle.readyState == 4 && httpAddArticle.status == 200) {
-                //document.location.href = "?action=edit_article";
-            } else {
-                var errors = JSON.parse(httpAddArticle.responseText);
-                for (var error in errors['errors']) {
-                    errorBlockAddArticle.innerHTML += errors['errors'][error] + '<br>';
-                }
-            }
-        };
-        httpAddArticle.send(params);
-        return false;
-    };
+$(document).ready(function (e) {
+    $('#add-article-form').on('submit',(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
 
-};
+        $.ajax({
+            type:'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+                document.location.href = "?action=edit_article";
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+                //$("#error-block-add-article").text(data['responseText']);
+                var resErrors = (data['responseText']);
+                //$("#error-block-add-article").text(resErrors);
+                $("#error-block-add-article").text("Veillez remplir tous les champs");
+                console.log(resErrors);
+
+            }
+        });
+    }));
+
+    $("#image").on("change", function() {
+            $("#add-article-form").submit();
+    });
+});
+//};

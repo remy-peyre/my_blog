@@ -26,6 +26,7 @@ class ArticleManager
         header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST');
+
         $isFormGood = true;
         $errors = array();
         $res = array();
@@ -33,7 +34,8 @@ class ArticleManager
             $data['image'] = $_FILES['image']['name'];
             $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
             $res['data'] = $data;
-        }else{
+        }
+        else{
             $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
@@ -56,43 +58,7 @@ class ArticleManager
         }
         $res['isFormGood'] = $isFormGood;
         return $res;
-        /*if($isFormGood){
-            return $data;
-        }*/
-        /*header('Content-Type: application/json; charset=utf-8');
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
-        $isFormGood = true;
-        $errorsAddArticle = array();
-        $res = array();
-        if(isset($_FILES['image']['name']) && !empty($_FILES)){
-            $data['image'] = $_FILES['image']['name'];
-            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
-        }else{
-            $errorsAddArticle['image'] = 'Veillez choisir une image';
-            $isFormGood = false;
-        }
 
-        if(isset($data['title']) && empty($data['title'])){
-            $errorsAddArticle['title'] = 'le champs Titre est obligatoire';
-            $isFormGood = false;
-        }
-        if(isset($data['content']) && empty($data['content'])){
-            $errorsAddArticle['content'] = 'Veillez remplir le contenu de l\'article';
-            $isFormGood = false;
-        }
-        if($isFormGood)
-        {
-            json_encode(array('success'=>true, 'user'=>$res));
-        }
-        else
-        {
-            echo(json_encode(array('success'=>false, 'errors'=>$errorsAddArticle), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
-            exit(0);
-        }
-        $res['isFormGood'] = $isFormGood;
-        $res['data']  =$data;
-        return $res;*/
 
     }
     public function userInsertArticle($data)

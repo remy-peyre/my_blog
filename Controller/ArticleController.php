@@ -13,12 +13,9 @@ class ArticleController extends BaseController
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = ArticleManager::getInstance();
                 $res = $manager->userCheckArticle($_POST);
-                //var_dump($res);
                 if ($res['isFormGood']) {
-                    echo "<pre>";
-                        var_dump($res['data']);
-                    echo "</pre>";
                     $manager->userInsertArticle($res['data']);
+                    $this->redirect('edit_article');
                 }
             }
             echo $this->renderView('add_article.html.twig');
