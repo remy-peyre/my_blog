@@ -36,7 +36,7 @@ class SecurityController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             //var_dump(userCheckRegister($_POST));
-            $manager = UserManager::getInstance();
+            $manager = ArticleManager::getInstance();
             if ($manager->userCheckRegister($_POST))
             {
                 $manager->userRegister($_POST);

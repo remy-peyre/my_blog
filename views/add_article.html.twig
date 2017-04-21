@@ -1,15 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <div id="error-block-add-article"></div>
     <section class="add_article">
-        <!--<form action="?action=add_article" enctype="multipart/form-data" method="POST">
-            titre : <input type="text" name="title"><br>
-            text : <textarea name="content" placeholder="Enter text here..."></textarea><br>
-            <input type="file" name="add_file"><br>
-            <input type="submit">
-        </form>-->
         <div class="add_article_form">
-            <form action="?action=add_article" enctype="multipart/form-data" method="POST">
+            <form action="?action=add_article" name="add-article-form" enctype="multipart/form-data" method="POST">
                 <fieldset><legend>Créer un article</legend>
                     <label>
                         <span>Titre
@@ -21,7 +16,7 @@
                         <span>Image
                             <span class="required">*</span>
                         </span>
-                        <input type="file" name="add_file">
+                        <input type="file" name="image">
                     </label>
                     <label for="content">
                         <span>Contenu
@@ -37,4 +32,5 @@
             </form>
         </div>
     </section>
+    <script type="text/javascript" src="web/script/ajax-add-article.js"></script>
 {% endblock %}

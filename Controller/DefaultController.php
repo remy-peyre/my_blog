@@ -10,22 +10,16 @@ class DefaultController extends BaseController
 {
     public function homeAction()
     {
-        if (!empty($_SESSION['user_id']))
-        {
-            $manager = UserManager::getInstance();
-            //$user = $manager->getUserById($_SESSION['user_id']);
-            $articles = ArticleManager::getInstance();
-            $AllUsersArticles = $articles->AllUsersArticles();
-            $AllUsernames = array();
-            foreach($AllUsersArticles as $article){
-                $user = $manager->getUserById((int)$article['user_id']);
-                $AllUsernames[(int)$article['user_id']] = $user['username'];
-            }
-            echo $this->renderView('home.html.twig',
-                                   ['AllUsersArticles' => $AllUsersArticles, 'AllUsernames'=>$AllUsernames]);
+        $manager = UserManager::getInstance();
+        $articles = ArticleManager::getInstance();
+        $AllUsersArticles = $articles->AllUsersArticles();
+        $AllUsernames = array();
+        foreach($AllUsersArticles as $article){
+            $user = $manager->getUserById((int)$article['user_id']);
+            $AllUsernames[(int)$article['user_id']] = $user['username'];
         }
-        else
-            $this->redirect('login');
+        echo $this->renderView('home.html.twig',
+                                   ['AllUsersArticles' => $AllUsersArticles, 'AllUsernames'=>$AllUsernames]);
     }
 
 
@@ -39,14 +33,10 @@ class DefaultController extends BaseController
 
     public function articlesAction()
     {
-        if (!empty($_SESSION['user_id'])) {
-            $articles = ArticleManager::getInstance();
-            $AllUsersArticles = $articles->AllUsersArticles();
-            echo $this->renderView('articles.html.twig',
+        $articles = ArticleManager::getInstance();
+        $AllUsersArticles = $articles->AllUsersArticles();
+        echo $this->renderView('articles.html.twig',
                                     ['AllUsersArticles' => $AllUsersArticles]);
-        }
-        else
-            $this->redirect('login');
     }
 
     public function saisonAction()

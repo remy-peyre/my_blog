@@ -10,17 +10,14 @@ class ArticleController extends BaseController
     public function add_articleAction()
     {
         if (!empty($_SESSION['user_id'])) {
-            $error = '';
-            $userArticles = array();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = ArticleManager::getInstance();
-                if (!empty($manager->userCheckArticle($_POST))) {
-                    $manager->userInsertArticle($manager->userCheckArticle($_POST));
-                } else {
-                    $error = "Invalid username or password";
+                $res = $manager->userCheckArticle($_POST);
+                if ($res['isFormGood']) {
+                    $manager->userInsertArticle($res['data']);
                 }
             }
-            echo $this->renderView('add_article.html.twig', ['userArticles' => $userArticles]);
+            echo $this->renderView('add_article.html.twig');
         }
         else
             $this->redirect('login');

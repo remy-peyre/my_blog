@@ -23,26 +23,62 @@ class ArticleManager
 
     public function userCheckArticle($data)
     {
-        $isFormGood = true;
+        /*$isFormGood = true;
         $errors = array();
         if(isset($_FILES['add_file']['name']) && !empty($_FILES)){
             $data['image'] = $_FILES['add_file']['name'];
             $data['image_tmp_name'] = $_FILES['add_file']['tmp_name'];
         }else{
-            $errors['image'] = 'image vide';
+            $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
         if(isset($data['title']) && empty($data['title'])){
-            $errors['title'] = 'titre vide';
+            $errors['title'] = 'le champs Titre est obligatoire';
             $isFormGood = false;
         }
         if(isset($data['content']) && empty($data['content'])){
-            $errors['title'] = 'titre vide';
+            $errors['title'] = 'Veillez remplir le contenu de l\'article';
             $isFormGood = false;
         }
         if($isFormGood){
             return $data;
+        }*/
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        $isFormGood = true;
+        $errorsAddArticle = array();
+        $res = array();
+        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+            $data['image'] = $_FILES['image']['name'];
+            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
+        }else{
+            $errorsAddArticle['image'] = 'Veillez choisir une image';
+            $isFormGood = false;
         }
+
+        if(isset($data['title']) && empty($data['title'])){
+            $errorsAddArticle['title'] = 'le champs Titre est obligatoire';
+            $isFormGood = false;
+        }
+        if(isset($data['content']) && empty($data['content'])){
+            $errorsAddArticle['content'] = 'Veillez remplir le contenu de l\'article';
+            $isFormGood = false;
+        }
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$res));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errorsAddArticle), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['data']  =$data;
+        $res['image'] = $_FILES;
+        return $res;
+
     }
     public function userInsertArticle($data)
     {
