@@ -525,7 +525,7 @@ input::placeholder {
 .right{
 	margin-right: 10px;
 }
-.more_link{
+.more_link_profil{
 	background-color: transparent;
 	border: 1px solid #ffffff;
 	border-radius: 3px;
@@ -535,7 +535,7 @@ input::placeholder {
 	line-height: 16px;
 	padding: 8px 15px;
 }
-.more_link:hover{
+.more_link_profil:hover{
 	background-color: #555555;
 }
 .second_part_profil{
