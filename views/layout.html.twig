@@ -23,6 +23,7 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
             </div>
         </header>
+        <main>
             {% if error is defined and error is not empty %}
                 <p class="error">Error : {{ error }}</p>
             {% endif %}
@@ -30,6 +31,7 @@
                 <p class="userArticles">Error : {{ userAticles }}</p>
             {% endif %}
             {% block content %}{% endblock %}
+        </main>
         <footer>
             <div class="square_footer">
                 <ul class="footer_left">

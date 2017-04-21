@@ -1,19 +1,21 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<h1>Hello {{ name }} !</h1>
-    <p>HOME</p>
-    <br>
-    {% for article in AllUsersArticles %}
-        {% set title = article['title'] %}
-        {% set matricule = article['matricule'] %}
-        {% set img = article['image'] %}
-        {% set username = AllUsernames[article['user_id']] %}
-        <article class="content_article">
-            <h1><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h1>
-            <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
-            <a href="?action=articles&article={{ matricule }}"><img  class="size_img_article" src="{{ img }}"/></a>
-            <p class="text_article">{{ article['content'] }}</p>
-        </article>
-    {% endfor %}
+<section class="home">
+{% for article in AllUsersArticles %}
+    {% set title = article['title'] %}
+    {% set matricule = article['matricule'] %}
+    {% set img = article['image'] %}
+    {% set username = AllUsernames[article['user_id']] %}
+    <article class="content_article">
+        <h2><a href="?action=articles&article={{ matricule }}"> {{ title }}</a></h2>
+        <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
+        <a href="?action=articles&article={{ matricule }}"><img  class="size_img_article" src="{{ img }}" alt="{{ title }}"></a>
+        <p class="text_article">{{ article['content'] }}</p>
+    </article>
+{% endfor %}
+</section>
+    <aside class="part_right_home">
+        <p>je fais partie de l'aside</p>
+    </aside>
 {% endblock %}

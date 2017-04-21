@@ -310,6 +310,12 @@ input::placeholder {
 .logo:hover{
 	content: url("../img/logo-noir.png");
 }
+.home{
+	width: 100%;
+}
+.part_right_home{
+	display: none;
+}
 
 /*----------------*/
 /*-- ADD-ARTICLE --*/
@@ -317,7 +323,6 @@ input::placeholder {
 .add_article{
 	width: 100%;
 }
-
 .add_article_form{
 	width: 80%;
 	font-family: 'Open Sans', sans-serif;
@@ -354,7 +359,6 @@ input::placeholder {
 	-moz-border-radius: 5px 5px 0px 0px;
 	background: #fafafa;
 	padding: 0px 8px 3px 8px;
-
 	font-weight: normal;
 }
 .add_article_form input[type=text]{
