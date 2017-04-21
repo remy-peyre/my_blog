@@ -444,10 +444,10 @@ input::placeholder {
 /*---- ARTICLE ---*/
 /*----------------*/
 .articles{
-	display : none;
 	width: 100%;
 	padding-left: 10%;
 }
+
 .size_for_one_article{
 	width: 80%;
 }
@@ -458,4 +458,16 @@ input::placeholder {
 .custom_title_article{
 	line-height: 1.5em;
 	font-size: 26px;
+}
+
+
+/*----------------*/
+/*---- READ-ARTICLE ---*/
+/*----------------*/
+.read-articles{
+	display: none;
+}
+.read-articles{
+	width: 100%;
+	padding-left: 10%;
 }

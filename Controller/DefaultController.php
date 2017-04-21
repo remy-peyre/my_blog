@@ -38,6 +38,14 @@ class DefaultController extends BaseController
         echo $this->renderView('articles.html.twig',
                                     ['AllUsersArticles' => $AllUsersArticles]);
     }
+    public function read_articleAction()
+    {
+        $articles = ArticleManager::getInstance();
+        $AllUsersArticles = $articles->AllUsersArticles();
+        echo $this->renderView('read_article.html.twig',
+            ['AllUsersArticles' => $AllUsersArticles]);
+    }
+
 
     public function saisonAction()
     {

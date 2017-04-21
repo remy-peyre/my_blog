@@ -23,11 +23,16 @@ class ArticleManager
 
     public function userCheckArticle($data)
     {
-        /*$isFormGood = true;
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        $isFormGood = true;
         $errors = array();
-        if(isset($_FILES['add_file']['name']) && !empty($_FILES)){
-            $data['image'] = $_FILES['add_file']['name'];
-            $data['image_tmp_name'] = $_FILES['add_file']['tmp_name'];
+        $res = array();
+        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+            $data['image'] = $_FILES['image']['name'];
+            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
+            $res['data'] = $data;
         }else{
             $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
@@ -37,13 +42,24 @@ class ArticleManager
             $isFormGood = false;
         }
         if(isset($data['content']) && empty($data['content'])){
-            $errors['title'] = 'Veillez remplir le contenu de l\'article';
+            $errors['content'] = 'Veillez remplir le contenu de l\'article';
             $isFormGood = false;
         }
-        if($isFormGood){
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+        }
+        $res['isFormGood'] = $isFormGood;
+        return $res;
+        /*if($isFormGood){
             return $data;
         }*/
-        header('Content-Type: application/json; charset=utf-8');
+        /*header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST');
         $isFormGood = true;
@@ -76,8 +92,7 @@ class ArticleManager
         }
         $res['isFormGood'] = $isFormGood;
         $res['data']  =$data;
-        $res['image'] = $_FILES;
-        return $res;
+        return $res;*/
 
     }
     public function userInsertArticle($data)

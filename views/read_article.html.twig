@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% for article in AllUsersArticles %}
+        {% set title = article['title'] %}
+        {% set matricule = article['matricule'] %}
+        {% set img = article['image'] %}
+        <section class="read-articles" id="{{ matricule }}">
+            <article>
+                <h2 class="custom_title_article">{{ title }}</h2>
+                <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
+                <p class="custom_text_article">{{ article['content'] }}</p>
+            </article>
+        </section>
+    {% endfor %}
+    <script type="text/javascript" src="web/script/showArticles.js"></script>
+{% endblock %}
