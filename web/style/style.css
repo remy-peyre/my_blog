@@ -318,7 +318,25 @@ input::placeholder {
 .color_title_home{
 	color: #000;
 }
+.button_read_article{
+	height: 30px;
+	line-height: 38px;
+	margin-left: auto;
+	margin-right: auto;
 
+}
+.more_link{
+	background-color: #444444;
+	border-radius: 3px;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 8px 15px;
+}
+.more_link:hover{
+	background-color: #555555;
+}
 
 
 /*----------------*/

@@ -8,10 +8,25 @@
     {% set img = article['image'] %}
     {% set username = AllUsernames[article['user_id']] %}
     <article class="content_article">
-        <h2><a class="color_title_home" href="?action=read_article&article={{ matricule }}"> {{ title }}</a></h2>
-        <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
-        <a href="?action=read_article&article={{ matricule }}"><img  class="size_img_article" src="{{ img }}" alt="{{ title }}"></a>
+        <h2>
+            <a class="color_title_home" href="?action=read_article&article={{ matricule }}">
+                {{ title }}
+            </a>
+        </h2>
+        <p class="date_article">Par
+            <span class="custom_name">
+                {{ username }}
+            </span>
+            {{ article['date'] }}</p>
+        <a href="?action=read_article&article={{ matricule }}">
+            <img  class="size_img_article" src="{{ img }}" alt="{{ title }}">
+        </a>
         <p class="text_article">{{ article['content'] }}</p>
+        <div class="button_read_article">
+            <a class="color_title_home more_link" href="?action=read_article&article={{ matricule }}">
+                Lire la suite
+            </a>
+        </div>
     </article>
 {% endfor %}
 </section>
