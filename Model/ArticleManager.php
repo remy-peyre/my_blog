@@ -89,6 +89,9 @@ class ArticleManager
         $comment['article_id'] = $article_id;
         $comment['user_id'] = $user_id;
         $this->DBManager->insert('comments', $comment);
+    }
+
+    public function myComments(){
 
     }
 

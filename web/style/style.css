@@ -559,3 +559,7 @@ input::placeholder {
 	margin-top: -50px;
 }
 
+.none{
+	display : none;
+}
+

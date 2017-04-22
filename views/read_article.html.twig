@@ -15,7 +15,7 @@
             </article>
             <div id="comments-area">
                 <form name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
-                    <input type="text" name="article_id" value="{{ id }}"/>
+                    <input type="text" class="none" name="article_id" value="{{ id }}"/>
                     <textarea name="content" placeholder="Votre commentaire..."></textarea>
                     <input type="submit" value="Commenter">
                 </form>
