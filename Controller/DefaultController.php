@@ -17,11 +17,9 @@ class DefaultController extends BaseController
         $AllImagesNames = array();
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
-            //var_dump(substr(strrchr($article['image'], "/"), 1));
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
         }
-        //var_dump($AllImagesNames);
         echo $this->renderView('home.html.twig',
                                    ['AllUsersArticles' => $AllUsersArticles,
                                        'AllUsernames'=>$AllUsernames,
@@ -48,6 +46,13 @@ class DefaultController extends BaseController
     {
         $articles = ArticleManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $res = $articles->userCheckComment($_POST);
+            if ($res['isFormGood']) {
+                //var_dump($res['data']);
+                $articles->userInsertComment($res['data']);
+            }
+        }
         echo $this->renderView('read_article.html.twig',
             ['AllUsersArticles' => $AllUsersArticles]);
     }

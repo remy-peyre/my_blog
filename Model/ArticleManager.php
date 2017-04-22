@@ -61,6 +61,44 @@ class ArticleManager
 
 
     }
+
+    public function userCheckComment($data){
+        $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($data['content']) && empty($data['content'])){
+            $errors['content'] = 'Veillez remplir les champs';
+            $isFormGood = false;
+        }
+        if(isset($data['content']) && !empty($data['content']) && strlen($data['content'])>5000){
+            $errors['content'] = 'Max 5000 caractère';
+            $isFormGood = false;
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['data'] = $data;
+        return $res;
+    }
+
+    public function userInsertComment($data){
+        $article_id = $data['article_id'];
+        $user_id = $_SESSION['user_id'];
+        $articleToComment = $this->getArticleById($article_id);
+        $article_id = (int)$articleToComment ['id'];
+
+        $comment['content'] = $data['content'];
+        $comment['article_id'] = $article_id;
+        $comment['user_id'] = $user_id;
+        $this->DBManager->insert('comments', $comment);
+
+    }
+
+    public function getArticleById($article_id)
+    {
+        $id = (int)$article_id;
+        $data = $this->DBManager->findOne("SELECT * FROM articles WHERE id = ".$id);
+        return $data;
+    }
+
     public function userInsertArticle($data)
     {
         $pathImage = 'uploads/'.$_SESSION['user_username'].'/'.$data['image'];
@@ -69,7 +107,7 @@ class ArticleManager
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
         $article['date'] = $this->getDatetimeNow();
-        $article['matricule'] = $this->RandomString();
+        $article['matricule'] = $this->getMatricule();
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
     }
@@ -86,7 +124,7 @@ class ArticleManager
         return date("Y-m-d H:i:s");
     }
 
-    public function RandomString()
+    public function getMatricule()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randstring = '';
