@@ -88,12 +88,11 @@ class ArticleManager
         $comment['content'] = $data['content'];
         $comment['article_id'] = $article_id;
         $comment['user_id'] = $user_id;
+        $comment['date'] = $this->getDatetimeNow();
         $this->DBManager->insert('comments', $comment);
     }
 
-    public function myComments(){
 
-    }
 
     public function getArticleById($article_id)
     {
@@ -119,6 +118,12 @@ class ArticleManager
         $id_user = $_SESSION['user_id'];
         return $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id ORDER BY DATE DESC', ['user_id' => $id_user]);
     }
+
+    public function ArticleComments($id){
+        $article_id = (int)$id;
+        return $this->DBManager->findAllSecure('SELECT * FROM comments WHERE article_id = :article_id ORDER BY DATE DESC', ['article_id' => $article_id]);
+    }
+
     public function AllUsersArticles(){
         return $this->DBManager->findAllSecure('SELECT * FROM articles ORDER BY DATE DESC');
     }

@@ -45,16 +45,37 @@ class DefaultController extends BaseController
     public function read_articleAction()
     {
         $articles = ArticleManager::getInstance();
+        $users = UserManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
+        $AllArticleComments = array();
+        $AllUsers = array();
+        $userWhoComment = array();
+
+        foreach ($AllUsersArticles as $article){
+            $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
+        }
+        foreach ($AllArticleComments as $comment){
+            if(!empty($comment)) {
+                foreach ($comment as $contentComment) {
+                    $AllUsers[$contentComment['user_id']] = $users->getUserById($contentComment['user_id']);
+                }
+            }
+        }
+
+
+        foreach ($AllUsers as $user){
+            $userWhoComment[$user['id']] = $user['username'];
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $res = $articles->userCheckComment($_POST);
             if ($res['isFormGood']) {
-                //var_dump($res['data']);
                 $articles->userInsertComment($res['data']);
             }
         }
         echo $this->renderView('read_article.html.twig',
-            ['AllUsersArticles' => $AllUsersArticles]);
+            ['AllUsersArticles' => $AllUsersArticles,
+             'AllArticleComments' => $AllArticleComments,
+             'userWhoComment' => $userWhoComment]);
     }
 
 
