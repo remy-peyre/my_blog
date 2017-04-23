@@ -17,13 +17,18 @@
             {% for comment in comments %}
                 <p><b>{{userWhoComment[comment['user_id']] }}</b> : {{ comment['content'] }}</p>
             {% endfor %}
-            <div id="comments-area">
-                <form name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
-                    <input type="text" class="none" name="article_id" value="{{ id }}"/>
-                    <textarea name="content" placeholder="Votre commentaire..."></textarea>
-                    <input type="submit" value="Commenter">
-                </form>
-            </div>
+            {% if userConnect is not empty %}
+                <div id="comments-area">
+                    <form name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
+                        <input type="text" class="none" name="article_id" value="{{ id }}"/>
+                        <textarea name="content" placeholder="Votre commentaire..."></textarea>
+                        <input type="submit" value="Commenter">
+                    </form>
+                </div>
+            {% endif %}
+            {% if userConnect is empty %}
+                <p><a href="?action=login">Connecter vous pour laisser un commentaire</a></p>
+            {% endif %}
         </section>
 
     {% endfor %}
