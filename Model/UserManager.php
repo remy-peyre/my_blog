@@ -129,8 +129,8 @@ class UserManager
         $errorsLogin = array();
 
         $user = $this->getUserByUsername($data['username']);
-        if (isset($data['username']) && $user === true) {
-            $errorsLogin['username'] = 'Ce pseudo existe déjà';
+        if ($user === false) {
+            $errorsLogin['username'] = 'Pseudo non valide';
             $isFormGood = false;
         }
         $hash = $this->userHash($data['password']);

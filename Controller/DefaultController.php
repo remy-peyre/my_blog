@@ -31,6 +31,20 @@ class DefaultController extends BaseController
     {
         if (!empty($_SESSION['user_id'])) {
             $manager = UserManager::getInstance();
+            $article = ArticleManager::getInstance();
+
+            $countArticles = $article->countArticles($_SESSION['user_id']);
+            $numberOfArticles = array();
+            $numberOfComments = array();
+
+            $countComments = $article->countComments($_SESSION['user_id']);
+
+            foreach ($countComments as $value) {
+                $numberOfComments[$_SESSION['user_id']] = $value['COUNT(*)'];
+            }
+            foreach ($countArticles as $value) {
+                $numberOfArticles[$_SESSION['user_id']] = $value['COUNT(*)'];
+            }
             $user = $manager->getUserById($_SESSION['user_id']);
             $username = $user['username'];
             $firstname = strtoupper($user['firstname']); //uppercase
@@ -41,6 +55,8 @@ class DefaultController extends BaseController
                                         'firstname' => $firstname,
                                         'lastname' => $lastname,
                                         'birthday' => $birthday,
+                                        'numberOfArticles' => $numberOfArticles[$_SESSION['user_id']],
+                                        'numberOfComments' => $numberOfComments[$_SESSION['user_id']],
                                     ]);
         }
         else{

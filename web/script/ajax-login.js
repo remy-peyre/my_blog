@@ -15,7 +15,8 @@ window.onload = function() {
 
         httpLogin.onload = function () {
             if (httpLogin.readyState == 4 && httpLogin.status == 200) {
-                document.location.href = "?action=home";
+                console.log(httpLogin);
+                //document.location.href = "?action=home";
             } else {
                 var errors = JSON.parse(httpLogin.responseText);
                 for (var error in errors['errors']) {

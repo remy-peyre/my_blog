@@ -9,7 +9,6 @@ class SecurityController extends BaseController
     public function loginAction()
     {
         $error = '';
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
