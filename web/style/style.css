@@ -582,6 +582,29 @@ input::placeholder {
 
 @media screen and (min-width: 641px){
 	/*-----------------*/
+	/*---- FOOTER -----*/
+	/*-----------------*/
+	.square_footer{
+		height: 125px;
+	}
+	.footer_left > li{
+		font-size: 15px;
+	}
+	.footer_right > li{
+		font-size: 15px;
+	}
+	.colum_log_social{
+		width: 30%;
+		height: 125px;
+	}
+	.social_footer{
+		text-align: center;
+	}
+	.bg_social {
+		width: 34px;
+	}
+
+	/*-----------------*/
 	/*--- REGISTER ----*/
 	/*-----------------*/
 	.register input[type="text"],
@@ -605,7 +628,7 @@ input::placeholder {
 		width: 34%;
 	}
 	input::placeholder {
-		font-size: 20px;
+		font-size: 18px;
 	}
 	.button_logToREG{
 		width: 300px;
