@@ -73,12 +73,18 @@ class DefaultController extends BaseController
     }
     public function read_articleAction()
     {
+        $userConnect = '';
+        if(!empty($_SESSION['user_id'])){
+            $userConnect = $_SESSION['user_username'];
+        }
+
         $articles = ArticleManager::getInstance();
         $users = UserManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
         $AllArticleComments = array();
         $AllUsers = array();
         $userWhoComment = array();
+        
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
         }
@@ -101,7 +107,8 @@ class DefaultController extends BaseController
         echo $this->renderView('read_article.html.twig',
             ['AllUsersArticles' => $AllUsersArticles,
              'AllArticleComments' => $AllArticleComments,
-             'userWhoComment' => $userWhoComment]);
+             'userWhoComment' => $userWhoComment,
+             'userConnect' => $userConnect]);
     }
 
 

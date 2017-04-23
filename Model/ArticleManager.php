@@ -112,7 +112,6 @@ class ArticleManager
         $this->DBManager->insert('articles', $article);
     }
 
-    //return articles user connect
     public function userArticles(){
         $id_user = $_SESSION['user_id'];
         return $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id ORDER BY DATE DESC', ['user_id' => $id_user]);
@@ -129,7 +128,6 @@ class ArticleManager
             $article_id = $article['id'];
         }
         $data2 =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
-
         return $data2;
     }
 
