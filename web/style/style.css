@@ -582,6 +582,18 @@ input::placeholder {
 
 @media screen and (min-width: 641px){
 	/*-----------------*/
+	/*---- NAVBAR -----*/
+	/*-----------------*/
+	.topnav a {
+		padding: 14px 7px;
+		vertical-align: middle;
+	}
+	.replace_nav{
+		margin-left: 13%;
+	}
+
+
+	/*-----------------*/
 	/*---- FOOTER -----*/
 	/*-----------------*/
 	.square_footer{
@@ -609,7 +621,9 @@ input::placeholder {
 	/*-----------------*/
 	.register input[type="text"],
 	.register input[type="password"] {
-		width: 30%;
+		width: 23%;
+		margin-bottom: 5px;
+		border: 1px solid #c3c2c2;
 	}
 	#error-block{
 		font-size: 1.3rem;
