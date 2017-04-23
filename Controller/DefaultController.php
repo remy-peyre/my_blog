@@ -13,17 +13,20 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $articles = ArticleManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
+        $contentArticle = array();
         $AllUsernames = array();
         $AllImagesNames = array();
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
+            $contentArticle[$article['matricule']] = substr($article['content'], 0, 150).'...';
         }
         echo $this->renderView('home.html.twig',
                                    ['AllUsersArticles' => $AllUsersArticles,
                                        'AllUsernames'=>$AllUsernames,
-                                       'AllImagesNames' => $AllImagesNames]);
+                                       'AllImagesNames' => $AllImagesNames,
+                                       'contentArticle' => $contentArticle]);
     }
 
 
@@ -84,7 +87,7 @@ class DefaultController extends BaseController
         $AllArticleComments = array();
         $AllUsers = array();
         $userWhoComment = array();
-        
+
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
         }
