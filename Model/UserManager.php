@@ -43,6 +43,7 @@ class UserManager
         $isFormGood = true;
         $errors = array();
 
+
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
             $isFormGood = false;
@@ -56,12 +57,16 @@ class UserManager
             $isFormGood = false;
         }
 
-        if (!isset($data['firstname']) || strlen($data['firstname']) < 4) {
-            $errors['firstname'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+        if (!isset($data['firstname']) || strlen($data['firstname']) < 2) {
+            $errors['firstname'] = 'Veuillez saisir un nom de 2 caractères minimum';
             $isFormGood = false;
         }
-        if (!isset($data['lastname']) || strlen($data['lastname']) < 4) {
-            $errors['lastname'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+        if (!isset($data['lastname']) || strlen($data['lastname']) < 2) {
+            $errors['lastname'] = 'Veuillez saisir un prénom de 2 caractères minimum';
+            $isFormGood = false;
+        }
+        if (!isset($data['birthday']) || !$this->birthdayValid($data['birthday'])) {
+            $errors['birthday'] = 'Birthday no valid';
             $isFormGood = false;
         }
 
@@ -86,6 +91,12 @@ class UserManager
 
     public function passwordValid($password){
         return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
+    }
+    public function birthdayValid($birthday){
+        $day = (int)substr($birthday,0,2);
+        $month = (int)substr($birthday,3,2);
+        $year = (int)substr($birthday,6,4);
+        return checkdate($month,$day,$year);
     }
 
     private function userHash($pass)

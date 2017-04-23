@@ -29,10 +29,23 @@ class DefaultController extends BaseController
 
     public function profilAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('profil.html.twig');
-        else
+        if (!empty($_SESSION['user_id'])) {
+            $manager = UserManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $username = $user['username'];
+            $firstname = strtoupper($user['firstname']); //uppercase
+            $lastname = ucwords($user['lastname']); //Convert the first character of each word to uppercase
+            $birthday= $user['birthday'];
+            echo $this->renderView('profil.html.twig',
+                                    ['username' => $username,
+                                        'firstname' => $firstname,
+                                        'lastname' => $lastname,
+                                        'birthday' => $birthday,
+                                    ]);
+        }
+        else{
             $this->redirect('login');
+        }
     }
 
     public function articlesAction()
@@ -50,7 +63,6 @@ class DefaultController extends BaseController
         $AllArticleComments = array();
         $AllUsers = array();
         $userWhoComment = array();
-
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
         }
@@ -61,8 +73,6 @@ class DefaultController extends BaseController
                 }
             }
         }
-
-
         foreach ($AllUsers as $user){
             $userWhoComment[$user['id']] = $user['username'];
         }

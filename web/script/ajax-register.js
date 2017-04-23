@@ -1,8 +1,6 @@
 window.onload = function(){
     var errorBlock = document.querySelector('#error-block');
-    var successBlock = document.querySelector('#success-block');
     document.forms['register-form'].onsubmit = function(){
-        successBlock.innerHTML = '';
         errorBlock.innerHTML = '';
         var params = 'username='+this.elements['username'].value;
         params += '&password='+this.elements['password'].value;
