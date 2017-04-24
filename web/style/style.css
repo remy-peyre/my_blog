@@ -485,10 +485,12 @@ input::placeholder {
 .custom_text_article{
 	font-size: 16px;
 	margin: 8px 0px 12px 0px;
+	width: 80%;
 }
 .custom_title_article{
 	line-height: 1.5em;
 	font-size: 26px;
+	width: 80%;
 }
 
 

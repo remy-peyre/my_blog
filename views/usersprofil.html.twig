@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <section class="profil">
+        <div class="first_part_profil">
+            <div class="button_profil left">
+                <a class="more_link_profil" href="?action=add_article">
+                    Créer un article
+                </a>
+            </div>
+            <div class="button_profil right">
+                <a class="more_link_profil" href="?action=#">
+                    Editer PROFIL
+                </a>
+            </div>
+        </div>
+        <div class="second_part_profil">
+            <img class="avatar" src="web/img/avatar.jpg">
+        </div>
+    </section>
+{% endblock %}

@@ -114,7 +114,17 @@ class DefaultController extends BaseController
              'userConnect' => $userConnect,
              'username' => $username]);
     }
+    public function usersprofilAction()
+    {
+        /*$users = UserManager::getInstance();
+        $AllUsers = array();
+        foreach ($AllUsers as $user){
+            $userWhoComment[$user['id']] = $user['username'];
+            $username[$user['id']] = $user['username'];
+        }*/
 
+        echo $this->renderView('usersprofil.html.twig');
+    }
 
     public function saisonAction()
     {
@@ -123,5 +133,4 @@ class DefaultController extends BaseController
         else
             $this->redirect('login');
     }
-
 }

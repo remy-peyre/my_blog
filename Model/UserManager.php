@@ -83,32 +83,6 @@ class UserManager
         return $isFormGood;
 
     }
-
-
-    public function usernameValid($username){
-        return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
-    }
-
-    public function passwordValid($password){
-        return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
-    }
-    public function birthdayValid($birthday){
-        $day = (int)substr($birthday,0,2);
-        $month = (int)substr($birthday,3,2);
-        $year = (int)substr($birthday,6,4);
-        return checkdate($month,$day,$year);
-    }
-
-    private function userHash($pass)
-    {
-        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
-        return $hash;
-    }
-
-
-    /**
-     * @param $data
-     */
     public function userRegister($data)
     {
         $user['username'] = $data['username'];
@@ -119,7 +93,6 @@ class UserManager
         mkdir('uploads/'.$user["username"]);
         $this->DBManager->insert('users', $user);
     }
-
     public function userCheckLogin($data)
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -151,8 +124,6 @@ class UserManager
         return $isFormGood;
 
     }
-
-
     public function userLogin($username)
     {
         $data = $this->getUserByUsername($username);
@@ -162,4 +133,25 @@ class UserManager
         $_SESSION['user_username'] = $data['username'];
         return true;
     }
+
+    private function usernameValid($username){
+        return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
+    }
+
+    private function passwordValid($password){
+        return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
+    }
+    private function birthdayValid($birthday){
+        $day = (int)substr($birthday,0,2);
+        $month = (int)substr($birthday,3,2);
+        $year = (int)substr($birthday,6,4);
+        return checkdate($month,$day,$year);
+    }
+
+    private function userHash($pass)
+    {
+        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        return $hash;
+    }
+
 }
