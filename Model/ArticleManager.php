@@ -90,6 +90,7 @@ class ArticleManager
         $comment['user_id'] = $user_id;
         $comment['date'] = $this->getDatetimeNow();
         $this->DBManager->insert('comments', $comment);
+        header("Refresh:0");
     }
 
     public function getArticleById($article_id)
@@ -102,8 +103,8 @@ class ArticleManager
     public function userInsertArticle($data)
     {
         $pathImage = 'uploads/'.$_SESSION['user_username'].'/'.$data['image'];
-        $article['title'] = $data['title'];
-        $article['content'] = $data['content'];
+        $article['title'] = htmlentities($data['title']);
+        $article['content'] = htmlentities($data['content']);
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
         $article['date'] = $this->getDatetimeNow();
