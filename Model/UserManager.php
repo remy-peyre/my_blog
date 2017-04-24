@@ -32,7 +32,11 @@ class UserManager
                                 ['username' => $username]);
         return $data;
     }
-
+    public function getAllUsers()
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM users");
+        return $data;
+    }
 
     
     public function userCheckRegister($data)

@@ -116,14 +116,34 @@ class DefaultController extends BaseController
     }
     public function usersprofilAction()
     {
-        /*$users = UserManager::getInstance();
-        $AllUsers = array();
-        foreach ($AllUsers as $user){
-            $userWhoComment[$user['id']] = $user['username'];
-            $username[$user['id']] = $user['username'];
-        }*/
+        $users = UserManager::getInstance();
+        $article = ArticleManager::getInstance();
+        $AllUsers = $users -> getAllUsers();
+        $numberOfArticles = array();
+        $numberOfComments = array();
+        $username = array();
+        $firstname = array();
+        $lastname = array();
+        $birthday = array();
 
-        echo $this->renderView('usersprofil.html.twig');
+        foreach ($AllUsers as $user){
+            $countArticles = $article->countArticles($user['id']);
+            $countComments = $article->countComments($user['id']);
+            $username[$user['username']] = $user['username'];
+            $firstname[$user['username']] = $user['firstname'];
+            $lastname[$user['username']] = $user['lastname'];
+            $birthday[$user['username']] = $user['birthday'];
+            foreach ($countArticles as $value){
+                $numberOfArticles[$user['username']] = $value['COUNT(*)'];
+            }
+            foreach ($countComments as $value){
+                $numberOfComments[$user['username']] = $value['COUNT(*)'];
+            }
+        }
+        echo $this->renderView('usersprofil.html.twig',
+            ['AllUsers' => $AllUsers,
+                'numberOfArticles' => $numberOfArticles,
+                'numberOfComments' => $numberOfComments]);
     }
 
     public function saisonAction()

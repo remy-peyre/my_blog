@@ -1,21 +1,19 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <section class="profil">
-        <div class="first_part_profil">
-            <div class="button_profil left">
-                <a class="more_link_profil" href="?action=add_article">
-                    Créer un article
-                </a>
+    {% for user in AllUsers %}
+        <section class="profil none" id="{{ user['username'] }}">
+            <div class="first_part_profil">
+                
             </div>
-            <div class="button_profil right">
-                <a class="more_link_profil" href="?action=#">
-                    Editer PROFIL
-                </a>
+            <div class="second_part_profil">
+                <img class="avatar" src="web/img/avatar.jpg">
+                <p>{{ user['username'] }}</p>
+                <p>{{ user['firstname'] }} - {{ user['lastname'] }}</p>
+                <p>{{ user['birthday'] }}</p>
+                <p>{{ numberOfArticles[user['username']] }} article(s) posté(s) - {{ numberOfComments[user['username']] }} commentaire(s) au total</p>
             </div>
-        </div>
-        <div class="second_part_profil">
-            <img class="avatar" src="web/img/avatar.jpg">
-        </div>
-    </section>
+        </section>
+    {% endfor %}
+    <script type="text/javascript" src="web/script/showUsers.js"></script>
 {% endblock %}
