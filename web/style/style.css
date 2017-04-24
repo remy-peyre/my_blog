@@ -774,6 +774,8 @@ input::placeholder {
 		border-left: 1px solid black;
 		border-bottom: 1px solid black;
 		text-align: center;
+		box-shadow: 0 6px 20px black;
+		padding: 0px 17px 17px 17px;
 	}
 
 	/*--------------------*/
