@@ -466,6 +466,7 @@ input::placeholder {
 .size_img_article{
 	max-height: 250px;
 	width: 100%;
+	margin-top: 5px;
 }
 .size_link{
 	height: 250px;
@@ -648,4 +649,42 @@ input::placeholder {
 		width: 300px;
 		text-align: center;
 	}
+
+	/*----------------*/
+	/*----- HOME -----*/
+	/*----------------*/
+	main{
+		display: flex;
+	}
+	.content_article{
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+		display: inline-flex;
+		border-bottom: 2px dashed #f1f1f1 !important;
+
+	}
+	.part_right_home{
+		vertical-align: top;
+		display: flex;
+		width: 15%;
+		margin-right: 4%;
+		color: white;
+		background-color: black;
+	}
+	.size_img_article{
+		width: 100%;
+	}
+	.text_article{
+		margin-left: 15px;
+	}
+	.inline_tablet_view{
+		display: inline-flex;
+	}
+	.size_link {
+		height: auto;
+	}
+
+
+
 }

@@ -19,7 +19,9 @@
             <span class="custom_name">
                 {{ username }}
             </span>
-            {{ article['date'] }}</p>
+            {{ article['date'] }}
+        </p>
+        <div class="inline_tablet_view">
         {% if nameImage is not empty %}
             <a class="size_link" href="?action=read_article&article={{ matricule }}">
                 <img  class="size_img_article" src="{{ img }}" alt="{{ title }}">
@@ -27,6 +29,7 @@
         {% endif %}
 
         <p class="text_article">{{ contentArticle[article['matricule']] }}</p>
+        </div>
         <div class="button_read_article">
             <a class="color_title_home more_link" href="?action=read_article&article={{ matricule }}">
                 Lire la suite
