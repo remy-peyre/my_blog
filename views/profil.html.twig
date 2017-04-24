@@ -15,11 +15,14 @@
             </div>
         </div>
         <div class="second_part_profil">
-            <img class="avatar" src="web/img/avatar.jpg">
-            <p>{{ username }}</p>
-            <p>{{ firstname }} - {{ lastname }}</p>
-            <p>{{ birthday }}</p>
-            <p>{{ numberOfArticles }} article(s) posté(s) - {{ numberOfComments }} commentaire(s) au total</p>
+            <div class="border_profil">
+                <img class="avatar" src="web/img/avatar.jpg">
+                <p>{{ username }}</p>
+                <p>{{ firstname }}  {{ lastname }}</p>
+                <p>{{ birthday }}</p>
+                <p>{{ numberOfArticles }} article(s) posté(s) </p>
+                <p>{{ numberOfComments }} commentaire(s) au total</p>
+            </div>
         </div>
     </section>
 {% endblock %}

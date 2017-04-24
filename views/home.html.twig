@@ -16,10 +16,14 @@
             </a>
         </h2>
         <p class="date_article">Par
-            <a href="?action=usersprofil&user={{ username }}"><span class="custom_name">
-                {{ username }}
-                </span></a>
+            <a href="?action=usersprofil&user={{ username }}">
+                <span class="custom_name">
+                    {{ username }}
+                </span>
+            </a>
             {{ article['date'] }}
+            <img class="size_chat" src="web/img/chat.png">
+            X
         </p>
         <div class="inline_tablet_view">
         {% if nameImage is not empty %}

@@ -322,6 +322,10 @@ input::placeholder {
 .home{
 	width: 100%;
 }
+.size_chat{
+	width: 10px;
+	margin-left: 10px;
+}
 .part_right_home{
 	display: none;
 }
@@ -703,8 +707,22 @@ input::placeholder {
 	/*------------------*/
 	/*----- PROFIL -----*/
 	/*------------------*/
-
-
-
+	.first_part_profil{
+		height: 245px;
+	}
+	.second_part_profil{
+		height: 225px;
+	}
+	.avatar{
+		height: 150px;
+		width: 150px;
+		margin-top: -82px;
+	}
+	.border_profil{
+		border-right: 1px solid black;
+		border-left: 1px solid black;
+		border-bottom: 1px solid black;
+		text-align: center;
+	}
 
 }

@@ -50,8 +50,8 @@ class DefaultController extends BaseController
             }
             $user = $manager->getUserById($_SESSION['user_id']);
             $username = $user['username'];
-            $firstname = strtoupper($user['firstname']); //uppercase
-            $lastname = ucwords($user['lastname']); //Convert the first character of each word to uppercase
+            $lastname = strtoupper($user['lastname']); //uppercase
+            $firstname = ucwords($user['firstname']); //Convert the first character of each word to uppercase
             $birthday= $user['birthday'];
             echo $this->renderView('profil.html.twig',
                                     ['username' => $username,
