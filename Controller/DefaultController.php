@@ -67,13 +67,6 @@ class DefaultController extends BaseController
         }
     }
 
-    public function articlesAction()
-    {
-        $articles = ArticleManager::getInstance();
-        $AllUsersArticles = $articles->AllUsersArticles();
-        echo $this->renderView('articles.html.twig',
-                                    ['AllUsersArticles' => $AllUsersArticles]);
-    }
     public function read_articleAction()
     {
         $userConnect = '';

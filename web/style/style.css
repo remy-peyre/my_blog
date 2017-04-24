@@ -669,8 +669,8 @@ input::placeholder {
 	.part_right_home{
 		vertical-align: top;
 		display: flex;
-		width: 15%;
-		margin-right: 4%;
+		width: 20%;
+		margin-right: 3%;
 		color: white;
 		background-color: black;
 	}
