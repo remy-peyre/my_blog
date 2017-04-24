@@ -687,6 +687,24 @@ input::placeholder {
 		height: auto;
 	}
 
+	/*-----------------------*/
+	/*----- ADD-ARTICLE -----*/
+	/*-----------------------*/
+	.add_article_form input[type=text]{
+		margin-left: 23%;
+	}
+	.add_article_form input[type=file]{
+		margin-left: 23%;
+	}
+	.add_article_form textarea{
+		margin-left: 20%;
+	}
+
+	/*------------------*/
+	/*----- PROFIL -----*/
+	/*------------------*/
+
+
 
 
 }

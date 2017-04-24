@@ -9,17 +9,19 @@
 
         <section class="home read-articles" id="{{ matricule }}">
             <article class="content_article">
-                <h2 class="custom_title_article">{{ title }}</h2>
+                <h2 class="custom_title_article">{{ title|nl2br }}</h2>
                 <p class="date_article">Par
-                    <span class="custom_name">{{ username[article['user_id']] }}</span>
+                    <a href="?action=usersprofil&user={{ username[article['user_id']] }}">
+                        <span class="custom_name">{{ username[article['user_id']] }}</span>
+                    </a>
                     {{ article['date'] }}
                 </p>
                 <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
-                <p class="custom_text_article text_article">{{ article['content'] }}</p>
+                <p class="custom_text_article text_article">{{ article['content']|nl2br }}</p>
             </article>
             {% set comments = AllArticleComments[id] %}
             {% for comment in comments %}
-                <p><b>{{userWhoComment[comment['user_id']] }}</b> : {{ comment['content'] }}</p>
+                <p><b><a href="?action=usersprofil&user={{userWhoComment[comment['user_id']] }}">{{userWhoComment[comment['user_id']] }}</a></b> : {{ comment['content']|nl2br }}</p>
             {% endfor %}
             {% if userConnect is not empty %}
                 <div id="comments-area">
@@ -36,7 +38,5 @@
         </section>
 
     {% endfor %}
-
-
     <script type="text/javascript" src="web/script/showArticles.js"></script>
 {% endblock %}
