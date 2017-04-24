@@ -7,11 +7,15 @@
         {% set img = article['image'] %}
         {% set id = article['id'] %}
 
-        <section class="read-articles" id="{{ matricule }}">
-            <article>
+        <section class="home read-articles" id="{{ matricule }}">
+            <article class="content_article">
                 <h2 class="custom_title_article">{{ title }}</h2>
+                <p class="date_article">Par
+                    <span class="custom_name">{{ username[article['user_id']] }}</span>
+                    {{ article['date'] }}
+                </p>
                 <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
-                <p class="custom_text_article">{{ article['content'] }}</p>
+                <p class="custom_text_article text_article">{{ article['content'] }}</p>
             </article>
             {% set comments = AllArticleComments[id] %}
             {% for comment in comments %}

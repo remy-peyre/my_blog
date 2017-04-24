@@ -80,14 +80,13 @@ class DefaultController extends BaseController
         if(!empty($_SESSION['user_id'])){
             $userConnect = $_SESSION['user_username'];
         }
-
         $articles = ArticleManager::getInstance();
         $users = UserManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
         $AllArticleComments = array();
         $AllUsers = array();
         $userWhoComment = array();
-
+        $username = array();
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
         }
@@ -100,6 +99,7 @@ class DefaultController extends BaseController
         }
         foreach ($AllUsers as $user){
             $userWhoComment[$user['id']] = $user['username'];
+            $username[$user['id']] = $user['username'];
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $res = $articles->userCheckComment($_POST);
@@ -111,7 +111,8 @@ class DefaultController extends BaseController
             ['AllUsersArticles' => $AllUsersArticles,
              'AllArticleComments' => $AllArticleComments,
              'userWhoComment' => $userWhoComment,
-             'userConnect' => $userConnect]);
+             'userConnect' => $userConnect,
+             'username' => $username]);
     }
 
 
