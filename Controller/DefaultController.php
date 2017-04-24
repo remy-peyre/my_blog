@@ -20,7 +20,7 @@ class DefaultController extends BaseController
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
-            $contentArticle[$article['matricule']] = substr($article['content'], 0, 150).'...';
+            $contentArticle[$article['matricule']] =substr($article['content'], 0, 200).' ...';
         }
         echo $this->renderView('home.html.twig',
                                    ['AllUsersArticles' => $AllUsersArticles,
