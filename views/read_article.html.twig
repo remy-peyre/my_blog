@@ -8,27 +8,39 @@
         {% set id = article['id'] %}
 
         <section class="home read-articles" id="{{ matricule }}">
-            <article class="content_article">
+            <article class="content_article marg_right_tablet">
                 <h2 class="custom_title_article">{{ title|nl2br }}</h2>
                 <p class="date_article">Par
                     <a href="?action=usersprofil&user={{ username[article['user_id']] }}">
                         <span class="custom_name">{{ username[article['user_id']] }}</span>
                     </a>
                     {{ article['date'] }}
+                    <img class="size_eyes" src="web/img/spy.png">
+                    XXXX
                 </p>
                 <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
                 <p class="custom_text_article text_article">{{ article['content']|nl2br }}</p>
             </article>
             {% set comments = AllArticleComments[id] %}
             {% for comment in comments %}
-                <p><b><a href="?action=usersprofil&user={{userWhoComment[comment['user_id']] }}">{{userWhoComment[comment['user_id']] }}</a></b> : {{ comment['content']|nl2br }}</p>
+                <div class="show_comm">
+                    <p>
+                        <a class="pseudo_comm" href="?action=usersprofil&user={{userWhoComment[comment['user_id']] }}">
+                            {{userWhoComment[comment['user_id']] }} :
+                        </a>
+                    </p>
+                    <p>
+                        {{ comment['content']|nl2br }}
+                    </p>
+                </div>
             {% endfor %}
             {% if userConnect is not empty %}
                 <div id="comments-area">
-                    <form name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
+                    <form class="size_form_comm" name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
                         <input type="text" class="none" name="article_id" value="{{ id }}"/>
                         <textarea name="content" placeholder="Votre commentaire..."></textarea>
-                        <input type="submit" value="Commenter">
+                        <br>
+                        <input class="submit_comm" type="submit" value="Commenter">
                     </form>
                 </div>
             {% endif %}
