@@ -63,9 +63,12 @@ class ArticleManager
     }
 
     public function userCheckComment($data){
+        /*header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        */
         $isFormGood = true;
         $errors = array();
-        $res = array();
         if(isset($data['content']) && empty($data['content'])){
             $errors['content'] = 'Veillez remplir les champs';
             $isFormGood = false;
@@ -74,9 +77,16 @@ class ArticleManager
             $errors['content'] = 'Max 5000 caractère';
             $isFormGood = false;
         }
-        $res['isFormGood'] = $isFormGood;
-        $res['data'] = $data;
-        return $res;
+        /*if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+        }*/
+        return $isFormGood;;
     }
 
     public function userInsertComment($data){
@@ -90,7 +100,6 @@ class ArticleManager
         $comment['user_id'] = $user_id;
         $comment['date'] = $this->getDatetimeNow();
         $this->DBManager->insert('comments', $comment);
-        header("Refresh:0");
     }
 
     public function getArticleById($article_id)

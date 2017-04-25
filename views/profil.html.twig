@@ -9,9 +9,9 @@
                 </a>
             </div>
             <div class="button_profil right">
-                <a class="more_link_profil" href="?action=#">
+                <span class="more_link_profil" id="edit_profil">
                     Editer PROFIL
-                </a>
+                </span>
             </div>
         </div>
         <div class="second_part_profil">
@@ -21,5 +21,18 @@
             <p>{{ birthday }}</p>
             <p>{{ numberOfArticles }} article(s) posté(s) - {{ numberOfComments }} commentaire(s) au total</p>
         </div>
+
+        <div id="form_edit_profil" class="none">
+            <form action="?action=profil" method="POST">
+                <input type="text" value="{{ username }}" name="username" placeholder="Modifier votre nom d'utilisateur">
+                <input type="text" value="{{ firstname }}" name="firstname" placeholder="Modifier votre nom">
+                <input type="text" value="{{ lastname }}"  name="lastname" placeholder="Modifier votre prénom">
+                <input type="text" value="{{ birthday }}" name="birthday" placeholder="Modifier votre date de naissance">
+                <input type="text" value="{{ id }}" name="id" class="none">
+                <input type="submit" value="Valider">
+            </form>
+        </div>
     </section>
+    <script type="text/javascript" src="web/script/ajax-edit-profil.js"></script>
+
 {% endblock %}

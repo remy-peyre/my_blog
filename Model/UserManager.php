@@ -37,7 +37,48 @@ class UserManager
         $data = $this->DBManager->findAllSecure("SELECT * FROM users");
         return $data;
     }
+    public function userCheckEditProfil($data){
+        $isFormGood = true;
+        $errors = array();
+        if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
+            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $isFormGood = false;
+        }
+        $data2 = $this->getUserByUsername($data['username']);
+        if($data2 !== false && (int)$data2['id'] != (int)$data['id']){
+            $errors['username'] = 'Le pseudo existe déjà';
+            $isFormGood = false;
+        }
+        if (!isset($data['firstname']) || strlen($data['firstname']) < 2) {
+            $errors['firstname'] = 'Veuillez saisir un nom de 2 caractères minimum';
+            $isFormGood = false;
+        }
+        if (!isset($data['lastname']) || strlen($data['lastname']) < 2) {
+            $errors['lastname'] = 'Veuillez saisir un prénom de 2 caractères minimum';
+            $isFormGood = false;
+        }
+        if (!isset($data['birthday']) || !$this->birthdayValid($data['birthday'])) {
+            $errors['birthday'] = 'Date de naissance non conforme';
+            $isFormGood = false;
+        }
+        return $isFormGood;
+    }
 
+    public function userEditProfil($data){
+        $username = $data['username'];
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
+        $birthday = $data['birthday'];
+        $id = (int)$data['id'];
+
+        return $this->DBManager->findOneSecure(
+            "UPDATE users SET username = :username, firstname = :firstname,lastname = :lastname,  birthday = :birthday WHERE id=:id",
+                ['username' => $username,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'birthday' => $birthday,
+                    'id' => $id]);
+    }
     
     public function userCheckRegister($data)
     {
@@ -50,6 +91,11 @@ class UserManager
 
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $isFormGood = false;
+        }
+        $data2 = $this->getUserByUsername($data['username']);
+        if($data2 !== false){
+            $errors['username'] = 'Le pseudo existe déjà';
             $isFormGood = false;
         }
         if(!isset($data['password']) || !$this->passwordValid($data['password'])){

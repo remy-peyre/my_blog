@@ -19,7 +19,7 @@ class DefaultController extends BaseController
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
-            $AllUsernames[(int)$article['user_id']] = $user['username'];
+            $AllUsernames[$article['user_id']] = $user['username'];
             $contentArticle[$article['matricule']] =substr($article['content'], 0, 200).' ...';
         }
         echo $this->renderView('home.html.twig',
@@ -39,7 +39,7 @@ class DefaultController extends BaseController
             $countArticles = $article->countArticles($_SESSION['user_id']);
             $numberOfArticles = array();
             $numberOfComments = array();
-
+            $id = $_SESSION['user_id'];
             $countComments = $article->countComments($_SESSION['user_id']);
 
             foreach ($countComments as $value) {
@@ -53,6 +53,14 @@ class DefaultController extends BaseController
             $firstname = strtoupper($user['firstname']); //uppercase
             $lastname = ucwords($user['lastname']); //Convert the first character of each word to uppercase
             $birthday= $user['birthday'];
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($manager->userCheckEditProfil($_POST)) {
+                   $manager->userEditProfil($_POST);
+                    header("Refresh:0");
+                }
+            }
+
             echo $this->renderView('profil.html.twig',
                                     ['username' => $username,
                                         'firstname' => $firstname,
@@ -60,6 +68,7 @@ class DefaultController extends BaseController
                                         'birthday' => $birthday,
                                         'numberOfArticles' => $numberOfArticles[$_SESSION['user_id']],
                                         'numberOfComments' => $numberOfComments[$_SESSION['user_id']],
+                                        'id' => $id
                                     ]);
         }
         else{
@@ -82,6 +91,7 @@ class DefaultController extends BaseController
         $username = array();
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
+            $username[$article['user_id']] = $users->getUserById($article['user_id'])['username'];
         }
         foreach ($AllArticleComments as $comment){
             if(!empty($comment)) {
@@ -95,9 +105,9 @@ class DefaultController extends BaseController
             $username[$user['id']] = $user['username'];
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $res = $articles->userCheckComment($_POST);
-            if ($res['isFormGood']) {
-                $articles->userInsertComment($res['data']);
+            if ($articles->userCheckComment($_POST)) {
+                $articles->userInsertComment($_POST);
+                header("Refresh:0");
             }
         }
         echo $this->renderView('read_article.html.twig',
@@ -114,18 +124,9 @@ class DefaultController extends BaseController
         $AllUsers = $users -> getAllUsers();
         $numberOfArticles = array();
         $numberOfComments = array();
-        $username = array();
-        $firstname = array();
-        $lastname = array();
-        $birthday = array();
-
         foreach ($AllUsers as $user){
             $countArticles = $article->countArticles($user['id']);
             $countComments = $article->countComments($user['id']);
-            $username[$user['username']] = $user['username'];
-            $firstname[$user['username']] = $user['firstname'];
-            $lastname[$user['username']] = $user['lastname'];
-            $birthday[$user['username']] = $user['birthday'];
             foreach ($countArticles as $value){
                 $numberOfArticles[$user['username']] = $value['COUNT(*)'];
             }
