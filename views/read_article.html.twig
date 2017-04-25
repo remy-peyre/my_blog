@@ -28,6 +28,8 @@
                         <a class="pseudo_comm" href="?action=usersprofil&user={{userWhoComment[comment['user_id']] }}">
                             {{userWhoComment[comment['user_id']] }} :
                         </a>
+                        <span>{{ dateComment[comment['user_id']] }}</span>
+
                     </p>
                     <p>
                         {{ comment['content']|nl2br }}
@@ -36,7 +38,8 @@
             {% endfor %}
             {% if userConnect is not empty %}
                 <div id="comments-area">
-                    <form class="size_form_comm" name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
+                    <p id="error-block-comment-article"></p>
+                    <form class="size_form_comm" id="comment-form" name="comment-form" action="?action=read_article&article={{ matricule }}" METHOD="POST">
                         <input type="text" class="none" name="article_id" value="{{ id }}"/>
                         <textarea name="content" placeholder="Votre commentaire..."></textarea>
                         <br>
