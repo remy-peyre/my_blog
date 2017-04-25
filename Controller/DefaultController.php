@@ -19,13 +19,8 @@ class DefaultController extends BaseController
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
-<<<<<<< HEAD
-            $AllUsernames[$article['user_id']] = $user['username'];
-            $contentArticle[$article['matricule']] =substr($article['content'], 0, 200).' ...';
-=======
             $AllUsernames[(int)$article['user_id']] = $user['username'];
             $contentArticle[$article['matricule']] =substr($article['content'], 0, 175).' ...';
->>>>>>> 21810b71ea5b9440b6895b238401ff04e2f1bd18
         }
         echo $this->renderView('home.html.twig',
                                    ['AllUsersArticles' => $AllUsersArticles,

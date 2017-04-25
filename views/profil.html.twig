@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="second_part_profil">
-            <div class="border_profil">
+            <div class="border_profil" id="border_profil_box">
                 <img class="avatar" src="web/img/avatar.jpg">
                 <p>{{ username }}</p>
                 <p>{{ firstname }}  {{ lastname }}</p>
@@ -23,18 +23,19 @@
                 <p>{{ numberOfArticles }} article(s) posté(s) </p>
                 <p>{{ numberOfComments }} commentaire(s) au total</p>
             </div>
+            <div id="form_edit_profil" class="none">
+                <form action="?action=profil" method="POST">
+                    <input type="text" value="{{ username }}" name="username" placeholder="Modifier votre nom d'utilisateur">
+                    <input type="text" value="{{ firstname }}" name="firstname" placeholder="Modifier votre nom">
+                    <input type="text" value="{{ lastname }}"  name="lastname" placeholder="Modifier votre prénom">
+                    <input type="text" value="{{ birthday }}" name="birthday" placeholder="Modifier votre date de naissance">
+                    <input type="text" value="{{ id }}" name="id" class="none">
+                    <input type="submit" value="Valider">
+                </form>
+            </div>
         </div>
 
-        <div id="form_edit_profil" class="none">
-            <form action="?action=profil" method="POST">
-                <input type="text" value="{{ username }}" name="username" placeholder="Modifier votre nom d'utilisateur">
-                <input type="text" value="{{ firstname }}" name="firstname" placeholder="Modifier votre nom">
-                <input type="text" value="{{ lastname }}"  name="lastname" placeholder="Modifier votre prénom">
-                <input type="text" value="{{ birthday }}" name="birthday" placeholder="Modifier votre date de naissance">
-                <input type="text" value="{{ id }}" name="id" class="none">
-                <input type="submit" value="Valider">
-            </form>
-        </div>
+
     </section>
     <script type="text/javascript" src="web/script/ajax-edit-profil.js"></script>
 
