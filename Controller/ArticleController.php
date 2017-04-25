@@ -28,9 +28,18 @@ class ArticleController extends BaseController
     public function edit_articleAction()
     {
         if (!empty($_SESSION['user_id'])) {
-            $manager = ArticleManager::getInstance();
-            $userArticles = $manager->userArticles();
+            $articles = ArticleManager::getInstance();
+            $userArticles = $articles->userArticles();
             $username = $_SESSION['user_username'];
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $res = $articles->checkEditArticle($_POST);
+               if ($res['isFormGood']){
+                   var_dump($articles->editArticle($res['data']));
+               }
+            }
+
+
             echo $this->renderView('edit_article.html.twig', ['userArticles' => $userArticles, 'username' => $username]);
         }
         else
