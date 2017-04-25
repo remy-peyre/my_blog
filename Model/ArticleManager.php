@@ -85,8 +85,9 @@ class ArticleManager
         {
             echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
             exit(0);
+
         }*/
-        return $isFormGood;;
+        return $isFormGood;
     }
 
     public function userInsertComment($data){
@@ -143,7 +144,7 @@ class ArticleManager
 
     public function ArticleComments($id){
         $article_id = (int)$id;
-        return $this->DBManager->findAllSecure('SELECT * FROM comments WHERE article_id = :article_id ORDER BY DATE DESC', ['article_id' => $article_id]);
+        return $this->DBManager->findAllSecure('SELECT * FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
     }
 
     public function AllUsersArticles(){

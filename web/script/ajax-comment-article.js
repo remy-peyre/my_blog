@@ -1,4 +1,42 @@
-var errorBlockComment = document.querySelector('#error-block-comment');
+$(document).ready(function (e) {
+    function $_GET(param) {
+        var vars = {};
+        window.location.href.replace( location.hash, '' ).replace(
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function( m, key, value ) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
+        if ( param ) {
+            return vars[param] ? vars[param] : null;
+        }
+        return vars;
+    }
+    var matricule = decodeURI( $_GET( 'article' ) );
+
+    $('#comment-form').on('submit',(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                document.location.href = "?action=read_article&article="+matricule;
+            },
+            error: function(data){
+                $("#error-block-comment-article").text("Veillez remplir le champs");
+            }
+        });
+    }));
+});
+//};
+
+/*var errorBlockComment = document.querySelector('#error-block-comment');
 var matricule = document.querySelector('#matricule');
 document.forms['comment-form'].onsubmit = function () {
     errorBlockComment.innerHTML = '';
@@ -24,3 +62,4 @@ document.forms['comment-form'].onsubmit = function () {
     httpComment.send(params);
     return false;
 };
+*/

@@ -88,6 +88,7 @@ class DefaultController extends BaseController
         $AllArticleComments = array();
         $AllUsers = array();
         $userWhoComment = array();
+        $dateComment = array();
         $username = array();
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
@@ -97,6 +98,7 @@ class DefaultController extends BaseController
             if(!empty($comment)) {
                 foreach ($comment as $contentComment) {
                     $AllUsers[$contentComment['user_id']] = $users->getUserById($contentComment['user_id']);
+                    $dateComment[$contentComment['user_id']] = $contentComment['date'];
                 }
             }
         }
@@ -107,13 +109,14 @@ class DefaultController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($articles->userCheckComment($_POST)) {
                 $articles->userInsertComment($_POST);
-                header("Refresh:0");
+                //header("Refresh:0");
             }
         }
         echo $this->renderView('read_article.html.twig',
             ['AllUsersArticles' => $AllUsersArticles,
              'AllArticleComments' => $AllArticleComments,
              'userWhoComment' => $userWhoComment,
+             'dateComment' => $dateComment,
              'userConnect' => $userConnect,
              'username' => $username]);
     }

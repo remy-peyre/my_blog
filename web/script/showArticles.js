@@ -17,5 +17,22 @@ window.onload = function() {
     var showMe = document.getElementById(matricule);
     showMe.style.display = "block";
 
+    $('#comment-form').submit(function(e) {
+        var $this = $(this);
+        $.ajax({
+            type: $this.attr('method'),
+            url: $this.attr('action'),
+            data: $this.serialize(),
+            success:function(data){
+                //document.location.href = "?action=read_article&article="+matricule;
+                console.log(data);
+            },
+            error: function(data){
+                console.log(data);
+                //$("#error-block-comment-article").text("Veillez remplir le champs");
+                //console.log("Veillez remplir le champs");
+            }
+        });
+    });
 
 }
