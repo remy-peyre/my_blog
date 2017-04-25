@@ -19,8 +19,13 @@ class DefaultController extends BaseController
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
+<<<<<<< HEAD
             $AllUsernames[$article['user_id']] = $user['username'];
             $contentArticle[$article['matricule']] =substr($article['content'], 0, 200).' ...';
+=======
+            $AllUsernames[(int)$article['user_id']] = $user['username'];
+            $contentArticle[$article['matricule']] =substr($article['content'], 0, 175).' ...';
+>>>>>>> 21810b71ea5b9440b6895b238401ff04e2f1bd18
         }
         echo $this->renderView('home.html.twig',
                                    ['AllUsersArticles' => $AllUsersArticles,
@@ -50,8 +55,8 @@ class DefaultController extends BaseController
             }
             $user = $manager->getUserById($_SESSION['user_id']);
             $username = $user['username'];
-            $firstname = strtoupper($user['firstname']); //uppercase
-            $lastname = ucwords($user['lastname']); //Convert the first character of each word to uppercase
+            $lastname = strtoupper($user['lastname']); //uppercase
+            $firstname = ucwords($user['firstname']); //Convert the first character of each word to uppercase
             $birthday= $user['birthday'];
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
