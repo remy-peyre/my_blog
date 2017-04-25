@@ -149,11 +149,11 @@ class ArticleManager
             move_uploaded_file($image_tmp_name,$new_file_url);
             unlink($article_old_image);
             return $this->DBManager->findOneSecure(
-                "UPDATE articles SET title = :title, content = :content,image = :image WHERE id=:id",
+                "UPDATE articles SET title = :title, content = :content,image = :new_file_url  WHERE id=:id",
                 [
                     'title' => $title,
                     'content' => $content,
-                    'image' => $image,
+                    'new_file_url' => $new_file_url,
                     'id' => $id
                 ]);
         }else{
@@ -204,6 +204,10 @@ class ArticleManager
         }
         $data2 =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
         return $data2;
+    }
+    public function countCommentsForEachArticle($article_id){
+        $data =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
+        return $data;
     }
 
     public function ArticleComments($id){

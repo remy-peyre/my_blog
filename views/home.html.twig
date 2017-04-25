@@ -8,6 +8,7 @@
     {% set img = article['image'] %}
     {% set username = AllUsernames[article['user_id']] %}
     {% set nameImage = AllImagesNames[article['matricule']] %}
+    {% set numberOfCommentsForEachArticle = numberOfComments[article['id']] %}
 
     <article class="content_article">
         <h2>
@@ -23,7 +24,7 @@
             </a>
             {{ article['date'] }}
             <img class="size_chat" src="web/img/chat.png">
-            X
+            {{ numberOfCommentsForEachArticle }}
         </p>
         <div class="inline_tablet_view">
         {% if nameImage is not empty %}

@@ -16,17 +16,30 @@ class DefaultController extends BaseController
         $contentArticle = array();
         $AllUsernames = array();
         $AllImagesNames = array();
+        $countComments = array();
+        $numberOfComments = array();
+
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
             $contentArticle[$article['matricule']] =substr($article['content'], 0, 175).' ...';
+            $countComments[$article['id']] = $articles->countCommentsForEachArticle((int)$article['id']);
         }
-        echo $this->renderView('home.html.twig',
-                                   ['AllUsersArticles' => $AllUsersArticles,
-                                       'AllUsernames'=>$AllUsernames,
-                                       'AllImagesNames' => $AllImagesNames,
-                                       'contentArticle' => $contentArticle]);
+
+
+        foreach ($countComments as $key=>$item) {
+            foreach ($item as $value){
+                $numberOfComments[$key] = $value['COUNT(*)'];
+            }
+        }
+        echo $this->renderView(        'home.html.twig',
+                                        [   'AllUsersArticles' => $AllUsersArticles,
+                                            'AllUsernames'=>$AllUsernames,
+                                            'AllImagesNames' => $AllImagesNames,
+                                            'contentArticle' => $contentArticle,
+                                            'numberOfComments' => $numberOfComments
+                                        ]);
     }
 
 
@@ -109,7 +122,6 @@ class DefaultController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($articles->userCheckComment($_POST)) {
                 $articles->userInsertComment($_POST);
-                //header("Refresh:0");
             }
         }
         echo $this->renderView('read_article.html.twig',

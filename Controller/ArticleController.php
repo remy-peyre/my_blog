@@ -35,7 +35,8 @@ class ArticleController extends BaseController
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $res = $articles->checkEditArticle($_POST);
                if ($res['isFormGood']){
-                   var_dump($articles->editArticle($res['data']));
+                   $articles->editArticle($res['data']);
+                   header("Refresh:0");
                }
             }
 
