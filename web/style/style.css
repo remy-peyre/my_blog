@@ -561,7 +561,7 @@ input::placeholder {
 
 
 /*----------------/
-/---- Profil  ---/
+/---- Profil  ----/
 /----------------*/
 .profil{
 	width: 100%;
@@ -614,10 +614,6 @@ input::placeholder {
 	align-content: stretch;
 	padding-bottom: 15px;
 }
-/*square_profil{
-	 width: 100px;
-	 height: 100px;
- }*/
 .border_profil{
 	text-align: center;
 }
@@ -632,8 +628,25 @@ input::placeholder {
 .none{
 	display : none;
 }
-
-
+/*--------------------/
+/---- EDIT-PROFIL ----/
+/--------------------*/
+#form_edit_profil{
+	margin-top: 20px;
+}
+.submit_edit_profil{
+	background-color: #444444;
+	border-radius: 3px;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 8px 15px;
+	border: 1px;
+}
+.submit_edit_profil:hover{
+	background-color: #555555;
+}
 
 
 /*--------------------------*/
@@ -732,7 +745,7 @@ input::placeholder {
 		background-color: black;
 	}
 	.size_img_article{
-		width: 100%;
+		width: 315px;
 	}
 	.text_article{
 		margin-left: 15px;
@@ -764,7 +777,7 @@ input::placeholder {
 		height: 245px;
 	}
 	.second_part_profil{
-		height: 225px;
+		height: 250px;
 	}
 	.avatar{
 		height: 150px;
@@ -778,6 +791,7 @@ input::placeholder {
 		text-align: center;
 		box-shadow: 0 6px 20px black;
 		padding: 0px 17px 17px 17px;
+		font-size: 20px;
 	}
 
 	/*--------------------*/
@@ -803,6 +817,20 @@ input::placeholder {
 	#comments-area textarea {
 		width: 640px;
 		height: 100px;
+	}
+
+	/*--------------------/
+/---- EDIT-PROFIL ----/
+/--------------------*/
+	#form_edit_profil{
+		margin-top: 40px;
+		width: 100%;
+	}
+	#form_edit_profil input[type=text] {
+		width: 45%;
+		padding: 3px;
+		margin-bottom: 4px;
+		font-size: 16px;
 	}
 
 }

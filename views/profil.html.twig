@@ -26,11 +26,16 @@
             <div id="form_edit_profil" class="none">
                 <form action="?action=profil" method="POST">
                     <input type="text" value="{{ username }}" name="username" placeholder="Modifier votre nom d'utilisateur">
+                    <br>
                     <input type="text" value="{{ firstname }}" name="firstname" placeholder="Modifier votre nom">
+                    <br>
                     <input type="text" value="{{ lastname }}"  name="lastname" placeholder="Modifier votre prénom">
+                    <br>
                     <input type="text" value="{{ birthday }}" name="birthday" placeholder="Modifier votre date de naissance">
+                    <br>
                     <input type="text" value="{{ id }}" name="id" class="none">
-                    <input type="submit" value="Valider">
+                    <br>
+                    <input class="submit_edit_profil" type="submit" value="Valider">
                 </form>
             </div>
         </div>
