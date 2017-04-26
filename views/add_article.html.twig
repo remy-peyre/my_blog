@@ -1,13 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="error-block-add-article"></div>
+
     <section class="add_article">
+        <div id="error-block-add-article"></div>
         <div class="add_article_form">
             <form action="?action=add_article" id="add-article-form" name="add-article-form" enctype="multipart/form-data" method="POST">
                 <fieldset><legend>Créer un article</legend>
                     <label>
-                        <span>Titre
+                        <span >Titre
                             <span class="required">*</span>
                         </span>
                         <input type="text" name="title">
@@ -21,7 +22,11 @@
                         <span>Contenu
                             <span class="required">*</span>
                         </span>
+<<<<<<< HEAD
                         <textarea class="ckeditor" name="editor" placeholder="Enter text here..."></textarea>
+=======
+                        <textarea name="content" placeholder="Description de l'article..."></textarea></textarea>
+>>>>>>> 65d52abf7ee3454e229a63a70fb747610013b5cf
                     </label>
                     <label>
                         <span>&nbsp;</span>
