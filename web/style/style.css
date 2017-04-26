@@ -997,9 +997,9 @@ input::placeholder {
 		width: 340px;
 	}
 
-	/*-----------------*/
-	/*---- Log IN -----*/
-	/*-----------------*/
+	/*-------------------*/
+	/*---- REGISTER -----*/
+	/*-------------------*/
 	.register{
 		height: 800px;
 	}
@@ -1027,14 +1027,10 @@ input::placeholder {
 	/*-----------------*/
 	.home {
 		width: 100%;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: flex-start;
 	}
 	.content_article {
 		width: 45%;
-		display: flex;
+		display: inline-flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		margin-left: 4%;
@@ -1048,7 +1044,7 @@ input::placeholder {
 		margin-left: 0;
 	}
 	.size_img_article {
-		width: 95%;
+		width: 100%;
 	}
 
 
@@ -1127,6 +1123,60 @@ input::placeholder {
 	.add_article_form fieldset legend {
 		font-size: 22px;
 	}
+	/*--------------------*/
+	/*------ PROFIL ------*/
+	/*--------------------*/
+	.first_part_profil {
+		height: 380px;
+	}
+	.second_part_profil {
+		height: 325px;
+	}
+	.avatar {
+		height: 200px;
+		width: 200px;
+		margin-top: -105px;
+	}
+	.border_profil {
+		width: 400px;
+		font-size: 23px;
+	}
+
+	/*----------------------*/
+	/*------ READ-ART ------*/
+	/*----------------------*/
+
+	/* custom read articule*/
+
+	.marg_right_tablet{
+		width: 70%;
+		margin-left: 13%;
+	}
+	.marg_right_tablet .custom_title_article{
+		font-size: 28px;
+	}
+	.marg_right_tablet .date_article{
+		font-size: 16px;
+	}
+	.marg_right_tablet .size_for_one_article{
+		height: 600px;
+	}
+	.marg_right_tablet .custom_text_article {
+		font-size: 20px;
+		margin-top: 18px;
+	}
+	.show_comm {
+		width: 70%;
+		margin-left: 13%;
+	}
+	#comments-area textarea {
+		width: 950px;
+		height: 120px;
+	}
+
+
+
+
 
 
 
