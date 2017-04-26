@@ -662,7 +662,7 @@ input::placeholder {
 		vertical-align: middle;
 	}
 	.replace_nav{
-		margin-left: 13%;
+		margin-left: 5%;
 	}
 
 
@@ -890,4 +890,13 @@ input::placeholder {
 		font-size: 16px;
 	}
 
+}
+
+@media screen and (min-width: 769px) {
+	/*-----------------*/
+	/*---- NAVBAR -----*/
+	/*-----------------*/
+	.replace_nav {
+		margin-left: 13%;
+	}
 }
