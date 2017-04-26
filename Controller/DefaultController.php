@@ -33,7 +33,7 @@ class DefaultController extends BaseController
         $a = htmlentities($orig);
         $b = html_entity_decode($a);
 
-        echo $b;
+        //echo $b;
 
 
         foreach ($countComments as $key=>$item) {
