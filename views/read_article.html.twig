@@ -19,7 +19,7 @@
                     XXXX
                 </p>
                 <img class="size_for_one_article" src="{{ img }}" alt="{{ title }}">
-                <p class="custom_text_article text_article">{{ article['content']|nl2br }}</p>
+                <p class="custom_text_article text_article">{{ article['content']|raw | raw}}</p>
             </article>
             {% set comments = AllArticleComments[id] %}
             {% for comment in comments %}
@@ -32,7 +32,7 @@
 
                     </p>
                     <p>
-                        {{ comment['content']|nl2br }}
+                        {{ comment['content'] }}
                     </p>
                 </div>
             {% endfor %}

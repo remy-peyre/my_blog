@@ -15,6 +15,11 @@ $twig = new Twig_Environment($loader, array(
     'cache' => false,
     'debug' => true,
 ));
+$filter = new Twig_SimpleFilter('decode_entities', function ($string) {
+    return html_entity_decode($string);
+});
+
+$twig->addFilter($filter);
 
 $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
     // implement whatever logic you need to determine the asset path
