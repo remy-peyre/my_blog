@@ -71,6 +71,10 @@ class UserManager
         $birthday = $data['birthday'];
         $id = (int)$data['id'];
 
+        $data2 = $this->getUserByUsername($id);
+        if($data2['username'] != $username){
+            rename('uploads/'.$_SESSION['user_username'],'uploads/'.$username);
+        }
         return $this->DBManager->findOneSecure(
             "UPDATE users SET username = :username, firstname = :firstname,lastname = :lastname,  birthday = :birthday WHERE id=:id",
                 ['username' => $username,

@@ -103,6 +103,70 @@ class ArticleManager
         $this->DBManager->insert('comments', $comment);
     }
 
+    public function checkEditArticle($data){
+        $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($_FILES['article_image']['name']) && !empty($_FILES)){
+            $data['article_image'] = $_FILES['article_image']['name'];
+            $data['image_tmp_name'] = $_FILES['article_image']['tmp_name'];
+            $res['data'] = $data;
+            //$isFormGood = false;
+        }
+        if(isset($data['article_content']) && empty($data['article_content'])){
+            $errors['article_content'] = 'Veillez remplir les champs';
+            $isFormGood = false;
+        }
+        if(isset($data['article_id']) && empty($data['article_id'])){
+            $errors['article_id'] = 'Veillez remplir les champs';
+            $isFormGood = false;
+        }
+        if(isset($data['article_title']) && empty($data['article_title'])){
+            $errors['article_title'] = 'Veillez remplir les champs';
+            $isFormGood = false;
+        }
+        $res['isFormGood'] = $isFormGood;
+        return $res;
+    }
+
+    public function editArticle($data){
+        $image = '';
+        $image_tmp_name = '';
+        if(!empty($data['article_image']) && !empty($data['image_tmp_name'])){
+            $image = $data['article_image'];
+            $image_tmp_name = $data['image_tmp_name'];
+        }
+        $title = $data['article_title'];
+        $content = $data['article_content'];
+        $id = $data['article_id'];
+
+
+        if(!empty($image) && !empty($image_tmp_name)){
+            $article_old_image = $data['article_old_image'];
+            echo $image;
+            echo $article_old_image;
+            $new_file_url = 'uploads/'.$_SESSION['user_username'].'/'.$image;
+            move_uploaded_file($image_tmp_name,$new_file_url);
+            unlink($article_old_image);
+            return $this->DBManager->findOneSecure(
+                "UPDATE articles SET title = :title, content = :content,image = :new_file_url  WHERE id=:id",
+                [
+                    'title' => $title,
+                    'content' => $content,
+                    'new_file_url' => $new_file_url,
+                    'id' => $id
+                ]);
+        }else{
+            return $this->DBManager->findOneSecure(
+                "UPDATE articles SET title = :title, content = :content WHERE id=:id",
+                [
+                    'title' => $title,
+                    'content' => $content,
+                    'id' => $id
+                ]);
+        }
+    }
+
     public function getArticleById($article_id)
     {
         $id = (int)$article_id;
@@ -140,6 +204,10 @@ class ArticleManager
         }
         $data2 =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
         return $data2;
+    }
+    public function countCommentsForEachArticle($article_id){
+        $data =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
+        return $data;
     }
 
     public function ArticleComments($id){
