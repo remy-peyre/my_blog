@@ -635,8 +635,11 @@ input::placeholder {
 	border-radius: 50%;
 	border: 3px solid #ECECEC;
 	margin-top: -50px;
+	transition: transform 2s;
 }
-
+.avatar:hover{
+	transform:rotate(360deg);
+}
 .none{
 	display : none;
 }
@@ -865,6 +868,23 @@ input::placeholder {
 		padding: 0px 17px 17px 17px;
 		font-size: 20px;
 	}
+	.more_link_profil {
+		font-size: 16px;
+	}
+
+	/*--------------------/
+	/---- EDIT-PROFIL ----/
+	/--------------------*/
+	#form_edit_profil{
+		margin-top: 40px;
+		width: 100%;
+	}
+	#form_edit_profil input[type=text] {
+		width: 45%;
+		padding: 3px;
+		margin-bottom: 4px;
+		font-size: 16px;
+	}
 
 	/*--------------------*/
 	/*----- READ-ART -----*/
@@ -891,19 +911,6 @@ input::placeholder {
 		height: 100px;
 	}
 
-	/*--------------------/
-	/---- EDIT-PROFIL ----/
-	/--------------------*/
-	#form_edit_profil{
-		margin-top: 40px;
-		width: 100%;
-	}
-	#form_edit_profil input[type=text] {
-		width: 45%;
-		padding: 3px;
-		margin-bottom: 4px;
-		font-size: 16px;
-	}
 
 }
 
@@ -924,6 +931,9 @@ input::placeholder {
 	/*-----------------*/
 	/*---- NAVBAR -----*/
 	/*-----------------*/
+	.logo{
+		width: 130px;
+	}
 	.replace_nav {
 		margin-left: 23%;
 	}
@@ -1047,8 +1057,8 @@ input::placeholder {
 		width: 100%;
 	}
 
-
 	/*----- ASIDE ----*/
+
 	.part_right_home {
 		width: 30%;
 	}
@@ -1123,6 +1133,7 @@ input::placeholder {
 	.add_article_form fieldset legend {
 		font-size: 22px;
 	}
+
 	/*--------------------*/
 	/*------ PROFIL ------*/
 	/*--------------------*/
@@ -1140,6 +1151,9 @@ input::placeholder {
 	.border_profil {
 		width: 400px;
 		font-size: 23px;
+	}
+	.more_link_profil {
+		font-size: 19px;
 	}
 
 	/*----------------------*/
