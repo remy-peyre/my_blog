@@ -736,14 +736,7 @@ input::placeholder {
 		border-bottom: 2px dashed #f1f1f1 !important;
 
 	}
-	.part_right_home{
-		vertical-align: top;
-		display: flex;
-		width: 20%;
-		margin-right: 3%;
-		color: white;
-		background-color: black;
-	}
+
 	.size_img_article{
 		width: 315px;
 	}
@@ -757,6 +750,70 @@ input::placeholder {
 		height: auto;
 	}
 
+	/*-------- ASIDE --------*/
+	.part_right_home{
+		vertical-align: top;
+		display: flex;
+		flex-direction: column;
+		width: 25%;
+		/* margin-right: 3%; */
+		color: black;
+		background-color: white;
+		border-left: 1px solid #555555;
+
+	}
+	.titlebar{
+		font-family: montserratSemiBold,Arial,Sans-Serif;
+		text-transform: uppercase;
+		font-size: 0.9rem;
+		margin-top: 25%;
+		margin-bottom: 5px;
+
+	}
+	.liste_aside{
+		list-style: none;
+		font-weight: 700;
+		color: #333;
+		paddind-right: 4px;
+		padding-left: 4px;
+	}
+	.row_aside_previously{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		margin: 5px 3px 7px 0px;
+		padding-top: 3px;
+	}
+	.line_top_previously{
+		border-top: 1px solid #ececec;
+	}
+	.arrow_aside{
+		height: 22px;
+		width: 20px;
+	}
+	.img_previously{
+		width: 100%;
+		height: 100px;
+	}
+	/*.list_aside_actu{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		width: 100%;
+	}*/
+	iframe{
+		width: 99%;
+		height: 120px;
+		margin-left: 2px;
+	}
+	.marge_description{
+		margin-left: 2px;
+	}
+	.color_link_aside{
+		color: #333;
+	}
 	/*-----------------------*/
 	/*----- ADD-ARTICLE -----*/
 	/*-----------------------*/
@@ -820,8 +877,8 @@ input::placeholder {
 	}
 
 	/*--------------------/
-/---- EDIT-PROFIL ----/
-/--------------------*/
+	/---- EDIT-PROFIL ----/
+	/--------------------*/
 	#form_edit_profil{
 		margin-top: 40px;
 		width: 100%;
