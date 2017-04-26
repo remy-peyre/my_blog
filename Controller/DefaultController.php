@@ -10,6 +10,7 @@ class DefaultController extends BaseController
 {
     public function homeAction()
     {
+
         $manager = UserManager::getInstance();
         $articles = ArticleManager::getInstance();
         $AllUsersArticles = $articles->AllUsersArticles();
@@ -23,9 +24,16 @@ class DefaultController extends BaseController
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
-            $contentArticle[$article['matricule']] =substr($article['content'], 0, 175).' ...';
+            $contentArticle[$article['matricule']] = html_entity_decode(substr($article['content'], 0, 175).' ...');
             $countComments[$article['id']] = $articles->countCommentsForEachArticle((int)$article['id']);
         }
+
+
+        $orig = 'J\'ai "sorti" le <strong>chien</strong> tout à l\'heure';
+        $a = htmlentities($orig);
+        $b = html_entity_decode($a);
+
+        echo $b;
 
 
         foreach ($countComments as $key=>$item) {

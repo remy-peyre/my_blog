@@ -6,21 +6,19 @@ class ArticleManager
 {
     private $DBManager;
     private $UserManager;
-
     private static $instance = null;
+
     public static function getInstance()
     {
         if (self::$instance === null)
             self::$instance = new ArticleManager();
         return self::$instance;
     }
-
     private function __construct()
     {
         $this->DBManager = DBManager::getInstance();
         $this->UserManager = UserManager::getInstance();
     }
-
     public function userCheckArticle($data)
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -43,8 +41,8 @@ class ArticleManager
             $errors['title'] = 'le champs Titre est obligatoire';
             $isFormGood = false;
         }
-        if(isset($data['content']) && empty($data['content'])){
-            $errors['content'] = 'Veillez remplir le contenu de l\'article';
+        if(isset($data['editor']) && empty($data['editor'])){
+            $errors['editor'] = 'Veillez remplir le contenu de l\'article';
             $isFormGood = false;
         }
         if($isFormGood)
@@ -61,7 +59,6 @@ class ArticleManager
 
 
     }
-
     public function userCheckComment($data){
         /*header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
@@ -89,7 +86,6 @@ class ArticleManager
         }*/
         return $isFormGood;
     }
-
     public function userInsertComment($data){
         $article_id = $data['article_id'];
         $user_id = $_SESSION['user_id'];
@@ -102,7 +98,6 @@ class ArticleManager
         $comment['date'] = $this->getDatetimeNow();
         $this->DBManager->insert('comments', $comment);
     }
-
     public function checkEditArticle($data){
         $isFormGood = true;
         $errors = array();
@@ -177,8 +172,8 @@ class ArticleManager
     public function userInsertArticle($data)
     {
         $pathImage = 'uploads/'.$_SESSION['user_username'].'/'.$data['image'];
-        $article['title'] = htmlentities($data['title']);
-        $article['content'] = htmlentities($data['content']);
+        $article['title'] = $data['title'];
+        $article['content'] =  $data['editor'];
         $article['image'] = $pathImage;
         $article['user_id'] = $_SESSION['user_id'];
         $article['date'] = $this->getDatetimeNow();

@@ -33,7 +33,7 @@
             </a>
         {% endif %}
 
-        <p class="text_article">{{ contentArticle[article['matricule']]|nl2br}}</p>
+        <p class="text_article">{{ contentArticle[article['matricule']]||raw }}</p>
         </div>
         <div class="button_read_article">
             <a class="color_title_home more_link" href="?action=read_article&article={{ matricule }}">
