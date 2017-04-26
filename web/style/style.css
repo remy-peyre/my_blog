@@ -1018,9 +1018,31 @@ input::placeholder {
 	/*-----------------*/
 	/*------ HOME -----*/
 	/*-----------------*/
-
-
-
+	.home {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+	.content_article {
+		width: 45%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		margin-left: 4%;
+		margin-right: 0;
+		margin-top: 25px;
+	}
+	.inline_tablet_view {
+		display: block;
+	}
+	.text_article {
+		margin-left: 0;
+	}
+	.size_img_article {
+		width: 95%;
+	}
 
 
 	/*----- ASIDE ----*/
@@ -1029,7 +1051,6 @@ input::placeholder {
 	}
 	.titlebar{
 		font-size: 1.4rem;
-		margin-top: 70px;
 	}
 	.liste_aside {
 		font-weight: 700;
