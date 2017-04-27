@@ -39,7 +39,6 @@ class ArticleController extends BaseController
                }
             }
 
-
             echo $this->renderView('edit_article.html.twig', ['userArticles' => $userArticles, 'username' => $username]);
         }
         else

@@ -1,21 +1,18 @@
 $(document).ready(function (e) {
     $(".form_edit_article").submit = function(e) {
         e.preventDefault();
-        var formData = new FormData(this);
+        var datas = $(this).serialize();
 
         $.ajax({
             type:'POST',
             url: $(this).attr('action'),
-            data:formData,
-            cache:false,
-            contentType: false,
-            processData: false,
+            data:datas,
+            dataType:'json',
             success:function(data){
                 //document.location.href = "?action=edit_article";
+                console.log('yo');
                 console.log(data);
-            },
-            error: function(data){
-                $("#error-block-add-article").text("Veillez remplir tous les champs");
+
             }
         });
     };
