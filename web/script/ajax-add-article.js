@@ -1,6 +1,11 @@
 $(document).ready(function (e) {
+    function CKupdateCommentary(){
+        for ( instance in CKEDITOR.instances )
+            CKEDITOR.instances['editor'].updateElement();
+    }
     $('#add-article-form').on('submit',(function(e) {
         e.preventDefault();
+        CKupdateCommentary();
         var formData = new FormData(this);
 
         $.ajax({
