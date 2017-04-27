@@ -751,7 +751,7 @@ input::placeholder {
 		margin-left: 5%;
 		margin-right: 5%;
 		display: inline-flex;
-		border-bottom: 2px dashed #f1f1f1 !important;
+		border-bottom: 3px dashed #f1f1f1 !important;
 	}
 	.size_img_article{
 		width: 315px;
@@ -830,7 +830,7 @@ input::placeholder {
 		font-size: 18px;
 	}
 	.add_article{
-		height: 380px;
+		height: 690px;
 	}
 	.add_article_form input[type=text]{
 		margin-left: 23%;
@@ -844,6 +844,7 @@ input::placeholder {
 	.add_article_form label > span {
 		font-size: 18px;
 	}
+
 
 	/*------------------*/
 	/*----- PROFIL -----*/
@@ -1097,11 +1098,11 @@ input::placeholder {
 	/*------ ADD-ART -----*/
 	/*--------------------*/
 	.add_article {
-		height: 430px;
+		height: 740px;
 		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
-		justify-content: flex-start;
+		/*flex-wrap: wrap;
+		justify-content: flex-start;*/
 		align-items: center;
 	}
 	#error-block-add-article{
