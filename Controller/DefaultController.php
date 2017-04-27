@@ -24,7 +24,7 @@ class DefaultController extends BaseController
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
             $AllUsernames[(int)$article['user_id']] = $user['username'];
-            $contentArticle[$article['matricule']] = html_entity_decode(substr($article['content'], 0, 175).' ...');
+            $contentArticle[$article['matricule']] = html_entity_decode(substr($article['content'], 0, 200).' ...');
             $countComments[$article['id']] = $articles->countCommentsForEachArticle((int)$article['id']);
         }
 

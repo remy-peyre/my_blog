@@ -491,7 +491,9 @@ input::placeholder {
 .size_link{
 	height: 250px;
 }
-
+.form_edit_article{
+	display: none;
+}
 /*----------------*/
 /*---- ARTICLE ---*/
 /*----------------*/

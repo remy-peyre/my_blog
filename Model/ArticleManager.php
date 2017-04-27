@@ -1,13 +1,10 @@
 <?php
-
 namespace Model;
-
 class ArticleManager
 {
     private $DBManager;
     private $UserManager;
     private static $instance = null;
-
     public static function getInstance()
     {
         if (self::$instance === null)
@@ -24,7 +21,6 @@ class ArticleManager
         header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST');
-
         $isFormGood = true;
         $errors = array();
         $res = array();
@@ -56,8 +52,6 @@ class ArticleManager
         }
         $res['isFormGood'] = $isFormGood;
         return $res;
-
-
     }
     public function userCheckComment($data){
         /*header('Content-Type: application/json; charset=utf-8');
@@ -82,7 +76,6 @@ class ArticleManager
         {
             echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
             exit(0);
-
         }*/
         return $isFormGood;
     }
@@ -91,7 +84,6 @@ class ArticleManager
         $user_id = $_SESSION['user_id'];
         $articleToComment = $this->getArticleById($article_id);
         $article_id = (int)$articleToComment ['id'];
-
         $comment['content'] = $data['content'];
         $comment['article_id'] = $article_id;
         $comment['user_id'] = $user_id;
@@ -99,6 +91,10 @@ class ArticleManager
         $this->DBManager->insert('comments', $comment);
     }
     public function checkEditArticle($data){
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+
         $isFormGood = true;
         $errors = array();
         $res = array();
@@ -108,8 +104,8 @@ class ArticleManager
             $res['data'] = $data;
             //$isFormGood = false;
         }
-        if(isset($data['article_content']) && empty($data['article_content'])){
-            $errors['article_content'] = 'Veillez remplir les champs';
+        if(isset($data['editor']) && empty($data['editor'])){
+            $errors['editor'] = 'Veillez remplir les champs';
             $isFormGood = false;
         }
         if(isset($data['article_id']) && empty($data['article_id'])){
@@ -120,22 +116,29 @@ class ArticleManager
             $errors['article_title'] = 'Veillez remplir les champs';
             $isFormGood = false;
         }
+        if($isFormGood)
+        {
+            json_encode(array('success'=>true, 'user'=>$_POST));
+        }
+        else
+        {
+            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
+            exit(0);
+        }
         $res['isFormGood'] = $isFormGood;
         return $res;
     }
-
     public function editArticle($data){
         $image = '';
         $image_tmp_name = '';
+        $res = true;
         if(!empty($data['article_image']) && !empty($data['image_tmp_name'])){
             $image = $data['article_image'];
             $image_tmp_name = $data['image_tmp_name'];
         }
         $title = $data['article_title'];
-        $content = $data['article_content'];
+        $content = $data['editor'];
         $id = $data['article_id'];
-
-
         if(!empty($image) && !empty($image_tmp_name)){
             $article_old_image = $data['article_old_image'];
             echo $image;
@@ -143,7 +146,7 @@ class ArticleManager
             $new_file_url = 'uploads/'.$_SESSION['user_username'].'/'.$image;
             move_uploaded_file($image_tmp_name,$new_file_url);
             unlink($article_old_image);
-            return $this->DBManager->findOneSecure(
+            $res =  $this->DBManager->findOneSecure(
                 "UPDATE articles SET title = :title, content = :content,image = :new_file_url  WHERE id=:id",
                 [
                     'title' => $title,
@@ -152,7 +155,7 @@ class ArticleManager
                     'id' => $id
                 ]);
         }else{
-            return $this->DBManager->findOneSecure(
+            $res =  $this->DBManager->findOneSecure(
                 "UPDATE articles SET title = :title, content = :content WHERE id=:id",
                 [
                     'title' => $title,
@@ -160,15 +163,14 @@ class ArticleManager
                     'id' => $id
                 ]);
         }
+        return $res;
     }
-
     public function getArticleById($article_id)
     {
         $id = (int)$article_id;
         $data = $this->DBManager->findOne("SELECT * FROM articles WHERE id = ".$id);
         return $data;
     }
-
     public function userInsertArticle($data)
     {
         $pathImage = 'uploads/'.$_SESSION['user_username'].'/'.$data['image'];
@@ -181,16 +183,13 @@ class ArticleManager
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
     }
-
     public function userArticles(){
         $id_user = $_SESSION['user_id'];
         return $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id ORDER BY DATE DESC', ['user_id' => $id_user]);
     }
-
     public function countArticles($user_id){
         return $this->DBManager->findAllSecure('SELECT COUNT(*) FROM articles WHERE user_id = :user_id', ['user_id' => $user_id]);
     }
-
     public function countComments($user_id){
         $data =  $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id', ['user_id' => $user_id]);
         $article_id = '';
@@ -204,12 +203,10 @@ class ArticleManager
         $data =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
         return $data;
     }
-
     public function ArticleComments($id){
         $article_id = (int)$id;
         return $this->DBManager->findAllSecure('SELECT * FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
     }
-
     public function AllUsersArticles(){
         return $this->DBManager->findAllSecure('SELECT * FROM articles ORDER BY DATE DESC');
     }
@@ -217,7 +214,6 @@ class ArticleManager
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");
     }
-
     public function getMatricule()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

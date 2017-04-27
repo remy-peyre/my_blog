@@ -1,48 +1,48 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<section class="home">
-{% for article in AllUsersArticles %}
-    {% set title = article['title'] %}
-    {% set matricule = article['matricule'] %}
-    {% set img = article['image'] %}
-    {% set username = AllUsernames[article['user_id']] %}
-    {% set nameImage = AllImagesNames[article['matricule']] %}
-    {% set numberOfCommentsForEachArticle = numberOfComments[article['id']] %}
+    <section class="home">
+        {% for article in AllUsersArticles %}
+            {% set title = article['title'] %}
+            {% set matricule = article['matricule'] %}
+            {% set img = article['image'] %}
+            {% set username = AllUsernames[article['user_id']] %}
+            {% set nameImage = AllImagesNames[article['matricule']] %}
+            {% set numberOfCommentsForEachArticle = numberOfComments[article['id']] %}
 
-    <article class="content_article">
-        <h2>
-            <a class="color_title_home" href="?action=read_article&article={{ matricule }}">
-                {{ title|nl2br}}
-            </a>
-        </h2>
-        <p class="date_article">Par
-            <a href="?action=usersprofil&user={{ username }}">
+            <article class="content_article">
+                <h2>
+                    <a class="color_title_home" href="?action=read_article&article={{ matricule }}">
+                        {{ title|nl2br}}
+                    </a>
+                </h2>
+                <p class="date_article">Par
+                    <a href="?action=usersprofil&user={{ username }}">
                 <span class="custom_name">
                     {{ username }}
                 </span>
-            </a>
-            {{ article['date'] }}
-            <img class="size_chat" src="web/img/chat.png">
-            {{ numberOfCommentsForEachArticle }}
-        </p>
-        <div class="inline_tablet_view">
-        {% if nameImage is not empty %}
-            <a class="size_link" href="?action=read_article&article={{ matricule }}">
-                <img  class="size_img_article" src="{{ img }}" alt="{{ title }}">
-            </a>
-        {% endif %}
+                    </a>
+                    {{ article['date'] }}
+                    <img class="size_chat" src="web/img/chat.png">
+                    {{ numberOfCommentsForEachArticle }}
+                </p>
+                <div class="inline_tablet_view">
+                    {% if nameImage is not empty %}
+                        <a class="size_link" href="?action=read_article&article={{ matricule }}">
+                            <img  class="size_img_article" src="{{ img }}" alt="{{ title }}">
+                        </a>
+                    {% endif %}
 
-        <p class="text_article">{{ contentArticle[article['matricule']]|raw | raw }}</p>
-        </div>
-        <div class="button_read_article">
-            <a class="color_title_home more_link" href="?action=read_article&article={{ matricule }}">
-                Lire la suite
-            </a>
-        </div>
-    </article>
-{% endfor %}
-</section>
+                    <p class="text_article">{{ contentArticle[article['matricule']]|raw | raw }}</p>
+                </div>
+                <div class="button_read_article">
+                    <a class="color_title_home more_link" href="?action=read_article&article={{ matricule }}">
+                        Lire la suite
+                    </a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
     <aside class="part_right_home">
         <div class="titlebar">
             <h3>Prochainement</h3>
@@ -91,7 +91,7 @@
             </div>
             <div class="row_aside_previously line_top_previously">
                 <a class="color_link_aside" href="http://www.allocine.fr/video/player_gen_cmedia=19568332&cserie=7330.html" target="_blank">
-                <iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=19568332" frameborder="0"></iframe>                <div>
+                    <iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=19568332" frameborder="0"></iframe>                <div>
                         <p>The Walking Dead - saison 7 SPOT VO "Football Season is over"</p>
                     </div>
                 </a>
