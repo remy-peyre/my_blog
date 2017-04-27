@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=0.2">
+   <title>The Walking Dead</title>
+   <link rel="icon" type="image/png" href="web/img/favicone.png">
+   <link rel="stylesheet" href="web/style/admin.css">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+   <!--<script type="text/javascript" src="web/script/ajax-comment-article.js"></script>-->
+
+</head>
+<body>
+   <header>
+      <div class="flex_nav">
+         <div>TWDF
+            <span class="red">Admin</span>
+         </div>
+         <div class="inline_nav_right">
+            <div>
+               <a class="replace_nav" href="?action=home">
+                  Accueil
+               </a>
+            </div>
+            <div>
+               <a class="replace_nav" href="?action=logout">
+                  Log out
+               </a>
+            </div>
+         </div>
+      </div>
+   </header>
+   <div class="flex_content">
+      <div class="left_part">
+         <ul>Navigation
+            <li class="marge_top">UTILISATEURS</li>
+            <li>ARTICLES</li>
+            <li>COMMENTAIRES</li>
+         </ul>
+      </div>
+      <div class="right_part">
+         <h1>Site administration</h1>
+         <p class="selection">Dashboard</p>
+         <div class="three_view_here">
+             {% if error is defined and error is not empty %}
+                <p class="error">Error : {{ error }}</p>
+             {% endif %}
+             {% if error is defined and userArticles is not empty %}
+                <p class="userArticles">Error : {{ userAticles }}</p>
+             {% endif %}
+             {% block content %}{% endblock %}
+         </div>
+      </div>
+   </div>
+</body>
+</html>
