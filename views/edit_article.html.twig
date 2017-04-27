@@ -1,23 +1,25 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-        <section>
+        <section class="edit_article">
             {% for article in userArticles %}
-                <article class="content_article">
+                <article class="content_article without_bottom">
                     <h2> {{ article['title'] }} </h2>
                     <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
                     {% set img = article['image'] %}
-                    <img class="size_img_article" src="{{ img }}" alt="{{ title }}">
+                    <img class="size_img_article position_tablet_edit" src="{{ img }}" alt="{{ title }}">
                     <p class="text_article">{{ article['content'] |raw | raw}}</p>
                 </article>
-                <button class="edit_article_button">Edit</button>
-                <form class="form_edit_article" id="{{ article['id'] }}" action="?action=edit_article" enctype="multipart/form-data" method="POST">
-                    <input type="text" name="article_title" value="{{ article['title'] }}"><br>
-                    <input type="file" id="image" name="article_image"><br>
-                    <textarea class="ckeditor" name="editor">{{ article['content'] |raw | raw}}</textarea><br>
-                    <input type="text" class="none" name="article_id" value="{{ article['id'] }}">
-                    <input type="text" class="none" name="article_old_image" value="{{ article['image'] }}">
-                    <input type="submit" value="Modifié">
-                </form>
+                <div class="area_button">
+                    <button class="edit_article_button">Editer</button>
+                    <form class="form_edit_article" id="{{ article['id'] }}" action="?action=edit_article" enctype="multipart/form-data" method="POST">
+                        <input type="text" name="article_title" value="{{ article['title'] }}"><br>
+                        <input type="file" id="image" name="article_image"><br>
+                        <textarea class="ckeditor" name="editor">{{ article['content'] |raw | raw}}</textarea><br>
+                        <input type="text" class="none" name="article_id" value="{{ article['id'] }}">
+                        <input type="text" class="none" name="article_old_image" value="{{ article['image'] }}">
+                        <input type="submit" value="MODIFIER">
+                    </form>
+                </div>
             {% endfor %}
         </section>
 {% endblock %}
