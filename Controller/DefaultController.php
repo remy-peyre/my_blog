@@ -19,7 +19,11 @@ class DefaultController extends BaseController
         $AllImagesNames = array();
         $countComments = array();
         $numberOfComments = array();
+        $userIsConnect = '';
 
+        if(!empty($_SESSION['user_id'])){
+            $userIsConnect = true;
+        }
         foreach($AllUsersArticles as $article){
             $AllImagesNames[$article['matricule']] = substr(strrchr($article['image'], "/"), 1);
             $user = $manager->getUserById((int)$article['user_id']);
@@ -41,18 +45,25 @@ class DefaultController extends BaseController
                 $numberOfComments[$key] = $value['COUNT(*)'];
             }
         }
+
+
         echo $this->renderView(        'home.html.twig',
                                         [   'AllUsersArticles' => $AllUsersArticles,
                                             'AllUsernames'=>$AllUsernames,
                                             'AllImagesNames' => $AllImagesNames,
                                             'contentArticle' => $contentArticle,
-                                            'numberOfComments' => $numberOfComments
+                                            'numberOfComments' => $numberOfComments,
+                                            'userIsConnect' => $userIsConnect,
                                         ]);
     }
 
 
     public function profilAction()
     {
+        $userIsConnect = '';
+        if(!empty($_SESSION['user_id'])){
+            $userIsConnect = true;
+        }
         if (!empty($_SESSION['user_id'])) {
             $manager = UserManager::getInstance();
             $article = ArticleManager::getInstance();
@@ -62,13 +73,15 @@ class DefaultController extends BaseController
             $numberOfComments = array();
             $id = $_SESSION['user_id'];
             $countComments = $article->countComments($_SESSION['user_id']);
+            //var_dump($countComments);
+            $numberOfComments[$_SESSION['user_id']] = $countComments;
 
-            foreach ($countComments as $value) {
-                $numberOfComments[$_SESSION['user_id']] = $value['COUNT(*)'];
-            }
             foreach ($countArticles as $value) {
                 $numberOfArticles[$_SESSION['user_id']] = $value['COUNT(*)'];
             }
+            echo "<pre>";
+            //var_dump($numberOfComments);
+            echo "</pre>";
             $user = $manager->getUserById($_SESSION['user_id']);
             $username = $user['username'];
             $lastname = strtoupper($user['lastname']); //uppercase
@@ -89,7 +102,8 @@ class DefaultController extends BaseController
                                         'birthday' => $birthday,
                                         'numberOfArticles' => $numberOfArticles[$_SESSION['user_id']],
                                         'numberOfComments' => $numberOfComments[$_SESSION['user_id']],
-                                        'id' => $id
+                                        'id' => $id,
+                                        'userIsConnect' => $userIsConnect,
                                     ]);
         }
         else{
@@ -142,6 +156,10 @@ class DefaultController extends BaseController
     }
     public function usersprofilAction()
     {
+        $userIsConnect = '';
+        if(!empty($_SESSION['user_id'])){
+            $userIsConnect = true;
+        }
         $users = UserManager::getInstance();
         $article = ArticleManager::getInstance();
         $AllUsers = $users -> getAllUsers();
@@ -149,18 +167,16 @@ class DefaultController extends BaseController
         $numberOfComments = array();
         foreach ($AllUsers as $user){
             $countArticles = $article->countArticles($user['id']);
-            $countComments = $article->countComments($user['id']);
+            $numberOfComments[$user['id']] = $article->countComments($user['id']);
             foreach ($countArticles as $value){
                 $numberOfArticles[$user['username']] = $value['COUNT(*)'];
-            }
-            foreach ($countComments as $value){
-                $numberOfComments[$user['username']] = $value['COUNT(*)'];
             }
         }
         echo $this->renderView('usersprofil.html.twig',
             ['AllUsers' => $AllUsers,
                 'numberOfArticles' => $numberOfArticles,
-                'numberOfComments' => $numberOfComments]);
+                'numberOfComments' => $numberOfComments,
+                'userIsConnect' => $userIsConnect]);
     }
 
     public function saisonAction()

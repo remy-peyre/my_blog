@@ -2,6 +2,7 @@
 {% block content %}
         <section class="edit_article">
             {% for article in userArticles %}
+                <div class="error_edit_article"></div>
                 <article class="content_article without_bottom">
                     <h2> {{ article['title'] }} </h2>
                     <p class="date_article">Par <span class="custom_name">{{ username }} </span>{{ article['date'] }}</p>
@@ -14,7 +15,7 @@
                     <form class="form_edit_article" id="{{ article['id'] }}" action="?action=edit_article" enctype="multipart/form-data" method="POST">
                         <input type="text" name="article_title" value="{{ article['title'] }}"><br>
                         <input type="file" id="image" name="article_image"><br>
-                        <textarea class="ckeditor" name="editor">{{ article['content'] |raw | raw}}</textarea><br>
+                        <textarea class="ckeditor" name="editor" id="editor">{{ article['content'] |raw | raw}}</textarea><br>
                         <input type="text" class="none" name="article_id" value="{{ article['id'] }}">
                         <input type="text" class="none" name="article_old_image" value="{{ article['image'] }}">
                         <input type="submit" value="MODIFIER">

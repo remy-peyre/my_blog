@@ -91,58 +91,49 @@ class ArticleManager
         $this->DBManager->insert('comments', $comment);
     }
     public function checkEditArticle($data){
-        $isFormGood = true;
-        $errors = array();
-        $res = array();
+        $reponse = array();
         if(isset($_FILES['article_image']['name']) && !empty($_FILES)){
             $data['article_image'] = $_FILES['article_image']['name'];
             $data['image_tmp_name'] = $_FILES['article_image']['tmp_name'];
             $res['data'] = $data;
-            //$isFormGood = false;
         }
         if(isset($data['editor']) && empty($data['editor'])){
-            $errors['editor'] = 'Veillez remplir les champs';
-            $isFormGood = false;
+            $reponse['success'] = 'Veillez remplir le contenu';
         }
         if(isset($data['article_id']) && empty($data['article_id'])){
-            $errors['article_id'] = 'Veillez remplir les champs';
-            $isFormGood = false;
+            $reponse['success'] = 'Veillez remplir les champs';
         }
         if(isset($data['article_title']) && empty($data['article_title'])){
-            $errors['article_title'] = 'Veillez remplir les champs';
-            $isFormGood = false;
+            $reponse['success'] = 'Veillez remplir les champs';
         }
-        if($isFormGood)
-        {
-            json_encode(array('success'=>true, 'user'=>$_POST));
+        if(!empty($data['editor']) && !empty($data['article_title'])){
+            $reponse['success'] = 'ok';
+            $this->editArticle($data);
         }
-        else
-        {
-            echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
-            exit(0);
-        }
-        $res['isFormGood'] = $isFormGood;
-        return $res;
+        echo json_encode(['reponse'=>$reponse]);
+        exit(0);
+
     }
     public function editArticle($data){
+
+        var_dump($data);
         $image = '';
         $image_tmp_name = '';
-        $res = true;
-        if(!empty($data['article_image']) && !empty($data['image_tmp_name'])){
+        if (!empty($data['article_image']) && !empty($data['image_tmp_name'])) {
             $image = $data['article_image'];
             $image_tmp_name = $data['image_tmp_name'];
         }
         $title = $data['article_title'];
         $content = $data['editor'];
         $id = $data['article_id'];
-        if(!empty($image) && !empty($image_tmp_name)){
+        if (!empty($image) && !empty($image_tmp_name)) {
             $article_old_image = $data['article_old_image'];
             echo $image;
             echo $article_old_image;
-            $new_file_url = 'uploads/'.$_SESSION['user_username'].'/'.$image;
-            move_uploaded_file($image_tmp_name,$new_file_url);
+            $new_file_url = 'uploads/' . $_SESSION['user_username'] . '/' . $image;
+            move_uploaded_file($image_tmp_name, $new_file_url);
             unlink($article_old_image);
-            $this->DBManager->findOneSecure(
+            return $this->DBManager->findOneSecure(
                 "UPDATE articles SET title = :title, content = :content,image = :new_file_url  WHERE id=:id",
                 [
                     'title' => $title,
@@ -150,8 +141,8 @@ class ArticleManager
                     'new_file_url' => $new_file_url,
                     'id' => $id
                 ]);
-        }else{
-            $this->DBManager->findOneSecure(
+        } else {
+            return $this->DBManager->findOneSecure(
                 "UPDATE articles SET title = :title, content = :content WHERE id=:id",
                 [
                     'title' => $title,
@@ -159,8 +150,9 @@ class ArticleManager
                     'id' => $id
                 ]);
         }
-        echo json_encode(array('success'=>true));
-        exit(0);
+
+        /*echo json_encode(array('reponse'=>true));
+        exit(0);*/
     }
     public function getArticleById($article_id)
     {
@@ -188,13 +180,16 @@ class ArticleManager
         return $this->DBManager->findAllSecure('SELECT COUNT(*) FROM articles WHERE user_id = :user_id', ['user_id' => $user_id]);
     }
     public function countComments($user_id){
-        $data =  $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id', ['user_id' => $user_id]);
-        $article_id = '';
-        foreach ($data as $article){
+        $cpt = 0;
+        $allArticles=  $this->DBManager->findAllSecure('SELECT * FROM articles WHERE user_id = :user_id', ['user_id' => $user_id]);
+        foreach ($allArticles as $article){
             $article_id = $article['id'];
+            $data = $this->countCommentsForEachArticle($article_id);
+            foreach ($data as $value){
+                $cpt += (int)$value['COUNT(*)'];
+            }
         }
-        $data2 =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);
-        return $data2;
+        return $cpt;
     }
     public function countCommentsForEachArticle($article_id){
         $data =  $this->DBManager->findAllSecure('SELECT COUNT(*) FROM comments WHERE article_id = :article_id', ['article_id' => $article_id]);

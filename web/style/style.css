@@ -1251,7 +1251,7 @@ input::placeholder {
 		font-size: 16px;
 	}
 	.marg_right_tablet .size_for_one_article{
-		height: 600px;
+		/*height: 600px;*/
 	}
 	.marg_right_tablet .custom_text_article {
 		font-size: 20px;

@@ -10,7 +10,7 @@
                 <p>{{ user['username'] }}</p>
                 <p>{{ user['firstname'] }} - {{ user['lastname'] }}</p>
                 <p>{{ user['birthday'] }}</p>
-                <p>{{ numberOfArticles[user['username']] }} article(s) posté(s) - {{ numberOfComments[user['username']] }} commentaire(s) au total</p>
+                <p>{{ numberOfArticles[user['username']] }} article(s) posté(s) - {{ numberOfComments[user['id']] }} commentaire(s) au total</p>
             </div>
         </section>
     {% endfor %}

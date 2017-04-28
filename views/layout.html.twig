@@ -14,6 +14,7 @@
         <script type="text/javascript" src="web/script/ajax-add-article.js"></script>
         <script type="text/javascript" src="web/script/edit_article.js"></script>
         <script type="text/javascript" src="web/script/ajax-edit-article.js"></script>
+
         <!--<script type="text/javascript" src="web/script/ajax-comment-article.js"></script>-->
     </head>
     <body>
@@ -22,9 +23,16 @@
                 <a class="hover_logo" href="?action=home"><img class="logo" src="web/img/logo-blanc.png" alt="the walking dead logo navigation"></a>
                 <a class="replace_nav" href="?action=home">Accueil</a>
                 <a href="?action=add_article">Créer un Article</a>
-                <a href="?action=edit_article">Modif Article</a>
+                {% if userIsConnect is not empty %}
+                    <a href="?action=edit_article">Modif Article</a>
+                {% endif %}
                 <a href="?action=profil">Profil</a>
-                <a href="?action=login">Se connecter</a>
+                {% if userIsConnect is not empty %}
+                    <a href="?action=logout">Deconnection</a>
+                {% endif %}
+                {% if userIsConnect is empty %}
+                    <a href="?action=login">Se connecter</a>
+                {% endif %}
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
             </div>
         </header>
