@@ -125,6 +125,10 @@ table{
 .delete{
 	width: 13px;
 }
+.interface_404{
+	margin: auto;
+	text-align: center;
+}
 
 @media screen and (min-width: 641px){
 	.left_part ul li{

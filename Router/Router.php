@@ -28,6 +28,7 @@ class Router
             call_user_func([$controller, $method]);
         }
         else
-            die('Illegal route');
+            header('Location: ?action=error');
+            //die('Illegal route');
     }
 }

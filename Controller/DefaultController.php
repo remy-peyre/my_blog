@@ -202,4 +202,13 @@ class DefaultController extends BaseController
         else
             $this->redirect('login');
     }
+
+    public function errorAction()
+    {
+        /*if (!empty($_SESSION['user_id']))
+            echo $this->renderView('error.html.twig');
+        else
+            $this->redirect('error');*/
+        echo $this->renderView('error.html.twig');
+    }
 }
