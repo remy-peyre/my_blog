@@ -605,7 +605,22 @@ input::placeholder {
 	color: #ffa000;
 	text-decoration: none;
 }
-
+.button_redirect_to_login{
+	background-color: #444444;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 8px 15px;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+	text-align: center;
+}
+.button_redirect_to_login a {
+	color: #ffffff;
+}
 
 /*----------------/
 /---- Profil  ----/
@@ -972,6 +987,9 @@ input::placeholder {
 		width: 640px;
 		height: 100px;
 	}
+	.button_redirect_to_login{
+		width: 25%;
+	}
 
 
 }
@@ -1264,6 +1282,10 @@ input::placeholder {
 	#comments-area textarea {
 		width: 950px;
 		height: 120px;
+	}
+	.button_redirect_to_login{
+		font-size: 18px;
+		height: 40px;
 	}
 
 

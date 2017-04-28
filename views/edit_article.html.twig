@@ -13,7 +13,7 @@
                     <button class="edit_article_button">Editer</button>
                     <form class="form_edit_article" id="{{ article['id'] }}" action="?action=edit_article" enctype="multipart/form-data" method="POST">
                         <input type="text" name="article_title" value="{{ article['title'] }}"><br>
-                        <input type="file" id="image" name="article_image"><br>
+                        <input type="file" name="article_image"><br>
                         <textarea class="ckeditor" name="editor">{{ article['content'] |raw | raw}}</textarea><br>
                         <input type="text" class="none" name="article_id" value="{{ article['id'] }}">
                         <input type="text" class="none" name="article_old_image" value="{{ article['image'] }}">
