@@ -986,6 +986,7 @@ input::placeholder {
 	#comments-area textarea {
 		width: 640px;
 		height: 100px;
+		font-size: 16px;
 	}
 	.button_redirect_to_login{
 		width: 25%;
@@ -1002,6 +1003,9 @@ input::placeholder {
 		margin-left: 13%;
 	}
 }
+
+
+
 
 /*---------------------------*/
 /*------ DESKTOP VIEW -------*/
@@ -1221,7 +1225,8 @@ input::placeholder {
 		width: 90%;
 	}
 	.position_tablet_edit{
-		margin-left: 0;
+		margin-left: 30%;
+		width: 400px;
 	}
 	/*---- Button ----*/
 	.form_edit_article input[type=text] {
@@ -1246,7 +1251,7 @@ input::placeholder {
 	}
 	.border_profil {
 		width: 400px;
-		font-size: 23px;
+		font-size: 18px;
 	}
 	.more_link_profil {
 		font-size: 19px;
@@ -1282,6 +1287,7 @@ input::placeholder {
 	#comments-area textarea {
 		width: 950px;
 		height: 120px;
+		font-size: 18px;
 	}
 	.button_redirect_to_login{
 		font-size: 18px;
@@ -1297,4 +1303,18 @@ input::placeholder {
 
 @media screen and (min-width: 1441px){
 
+	/*-----------------------*/
+	/*------ EDIT-ART -------*/
+	/*-----------------------*/
+	.position_tablet_edit {
+		margin-left: 36%;
+	}
+
+
+	/*-----------------------*/
+	/*------- PROFIL --------*/
+	/*-----------------------*/
+	.border_profil {
+		font-size: 20px;
+	}
 }

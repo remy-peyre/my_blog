@@ -139,10 +139,21 @@ table{
 	}
 }
 @media screen and (min-width: 1025px){
+	.flex_nav {
+		height: 35px;
+		font-size: 20px;
+		padding: 7px;
+	}
+	.espace{
+		margin-right: 15px;
+	}
 	.left_part ul li{
 		font-size: 17px;
 	}
 	.left_part ul{
 		font-size: 22px;
+	}
+	.selection{
+		font-size: 18px;
 	}
 }
