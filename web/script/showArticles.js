@@ -17,7 +17,7 @@ window.onload = function() {
     var showMe = document.getElementById(matricule);
     showMe.style.display = "block";
 
-    $('#comment-form').submit(function(e) {
+    /*$('#comment-form').submit(function(e) {
         var $this = $(this);
         $.ajax({
             type: $this.attr('method'),
@@ -33,6 +33,6 @@ window.onload = function() {
                 //console.log("Veillez remplir le champs");
             }
         });
-    });
+    });*/
 
 }

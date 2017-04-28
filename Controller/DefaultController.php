@@ -125,6 +125,11 @@ class DefaultController extends BaseController
         $userWhoComment = array();
         $dateComment = array();
         $username = array();
+        $userIsConnect = '';
+
+        if(!empty($_SESSION['user_id'])){
+            $userIsConnect = true;
+        }
         foreach ($AllUsersArticles as $article){
             $AllArticleComments[$article['id']] = $articles->ArticleComments($article['id']);
             $username[$article['user_id']] = $users->getUserById($article['user_id'])['username'];
@@ -133,7 +138,7 @@ class DefaultController extends BaseController
             if(!empty($comment)) {
                 foreach ($comment as $contentComment) {
                     $AllUsers[$contentComment['user_id']] = $users->getUserById($contentComment['user_id']);
-                    $dateComment[$contentComment['user_id']] = $contentComment['date'];
+                    $dateComment[$contentComment['id']] = $contentComment['date'];
                 }
             }
         }
@@ -144,6 +149,7 @@ class DefaultController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($articles->userCheckComment($_POST)) {
                 $articles->userInsertComment($_POST);
+                header('Location:?action=read_article&article='.$_GET['article']);
             }
         }
         echo $this->renderView('read_article.html.twig',
@@ -152,7 +158,8 @@ class DefaultController extends BaseController
              'userWhoComment' => $userWhoComment,
              'dateComment' => $dateComment,
              'userConnect' => $userConnect,
-             'username' => $username]);
+             'username' => $username,
+             'userIsConnect' => $userIsConnect]);
     }
     public function usersprofilAction()
     {
