@@ -178,4 +178,28 @@ class DefaultController extends BaseController
         else
             $this->redirect('login');
     }
+
+    public function admin_userAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('admin_user.html.twig');
+        else
+            $this->redirect('login');
+    }
+
+    public function admin_articleAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('admin_article.html.twig');
+        else
+            $this->redirect('login');
+    }
+
+    public function admin_commentAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('admin_comment.html.twig');
+        else
+            $this->redirect('login');
+    }
 }

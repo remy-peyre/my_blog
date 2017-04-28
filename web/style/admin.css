@@ -60,7 +60,14 @@ ul{
 .left_part ul li{
 	list-style: none;
 	color: #0D47A1;
-	margin-top: 15px;
+	margin-top: 46px;
+	font-size: 9px;
+}
+.left_part ul{
+	font-size: 13px;
+}
+.main_link{
+	color: #0D47A1;
 }
 .marge_top{
 	margin-top: 10px;
@@ -85,4 +92,53 @@ h1{
 	width: 100%;
 	height: 300px;
 	margin-top: 10px;
+}
+
+tr{
+	text-align: center;
+}
+
+th{
+	padding-bottom: 10px;
+	font-size:20px;
+}
+
+/* Line white */
+tr:nth-child(even){
+	color: #5d5d5d;
+	background: #ffffff;
+}
+
+
+/* Line grey */
+
+tr:nth-child(odd){
+	background-color: #f9f9f9;
+	color: #5d5d5d;
+}
+table{
+	width:100%;
+}
+.size_delete{
+	width: 70px;
+}
+.delete{
+	width: 13px;
+}
+
+@media screen and (min-width: 641px){
+	.left_part ul li{
+		font-size: 12px;
+	}
+	.left_part ul{
+		font-size: 16px;
+	}
+}
+@media screen and (min-width: 1025px){
+	.left_part ul li{
+		font-size: 17px;
+	}
+	.left_part ul{
+		font-size: 22px;
+	}
 }
