@@ -1067,7 +1067,7 @@ input::placeholder {
 	}
 	.login input[type="text"],
 	.login input[type="password"] {
-		height: 50px;
+		height: 35px;
 		margin-bottom: 10px;
 		font-size: 22px;
 	}
@@ -1098,7 +1098,7 @@ input::placeholder {
 	}
 	.register input[type="text"],
 	.register input[type="password"] {
-		height: 50px;
+		height: 35px;
 		margin-bottom: 4px;
 		font-size: 20px;
 	}
@@ -1288,10 +1288,13 @@ input::placeholder {
 		height: 40px;
 	}
 
+}
 
 
+/*---------------------------*/
+/*------ DESKTOP VIEW -------*/
+/*---------------------------*/
 
-
-
+@media screen and (min-width: 1441px){
 
 }

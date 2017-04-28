@@ -24,11 +24,11 @@
                 <a class="replace_nav" href="?action=home">Accueil</a>
                 <a href="?action=add_article">Créer un Article</a>
                 {% if userIsConnect is not empty %}
-                    <a href="?action=edit_article">Modif Article</a>
+                    <a href="?action=edit_article">Editer Article</a>
                 {% endif %}
                 <a href="?action=profil">Profil</a>
                 {% if userIsConnect is not empty %}
-                    <a href="?action=logout">Deconnection</a>
+                    <a href="?action=logout">Déconnection</a>
                 {% endif %}
                 {% if userIsConnect is empty %}
                     <a href="?action=login">Se connecter</a>
@@ -57,7 +57,6 @@
                         <a href="?action=home">
                             Accueil
                         </a>
-
                     </li>
                     <li>
                         <a href="?action=add_article">
