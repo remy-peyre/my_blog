@@ -12,7 +12,8 @@ php -r "unlink('composer-setup.php');"
 ####Add file .sql in phpmyadmin
 
 
-####Create adirectory config, with a file config.yml  
+####Create a directory config, with a file config.yml  
+
  routes:  
      home: 'Default:home'  
      about: 'Default:about'  
@@ -35,6 +36,6 @@ php -r "unlink('composer-setup.php');"
  
  db_config:  
      name: 'twd2'  
-     host: 'localhost'
+     host: 'localhost'  
      user: 'root'  
      pass: 'root'  
