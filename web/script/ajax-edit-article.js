@@ -1,10 +1,33 @@
 $(document).ready(function() {
     function CKupdateCommentary(){
-        for ( instance in CKEDITOR.instances ) {
+        for ( instance in CKEDITOR.instances )
             CKEDITOR.instances['editor'].updateElement();
-        }
     }
-    $('.form_edit_article').on('submit', function (e) {
+    $('.form_edit_article').on('submit',(function(e) {
+        e.preventDefault();
+        CKupdateCommentary();
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(reponse){
+                var res = JSON.parse(reponse);
+                console.log(res);
+                //document.location.href = "?action=edit_article";
+            },
+            error: function(reponse){
+                console.log('errors');
+                //$("#error-block-add-article").text("Veillez remplir tous les champs");
+            }
+        });
+    }));
+
+    /*$('').on('submit', function (e) {
         e.preventDefault(); // On empêche de soumettre le formulaire
         var $this = $(this); // L'objet jQuery du formulaire
         console.log("Okais");
@@ -28,5 +51,5 @@ $(document).ready(function() {
                 }
             },
         });
-    });
+    });*/
 });

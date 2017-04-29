@@ -42,11 +42,11 @@ class ArticleController extends BaseController
             $userArticles = $articles->userArticles();
             $username = $_SESSION['user_username'];
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $articles->checkEditArticle($_POST);
-                //header('Location: ?action=edit_article');
-                /*if ($res['isFormGood']) {
+                $res = $articles->checkEditArticle($_POST);
+                if ($res['isFormGood']) {
                      $articles->editArticle($res['data']);
-                 }*/
+                     header('Location:?action=edit_article');
+                 }
             }
             echo $this->renderView('edit_article.html.twig',
                 ['userArticles' => $userArticles, 'username' => $username,

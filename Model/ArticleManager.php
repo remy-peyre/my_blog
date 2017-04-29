@@ -92,6 +92,7 @@ class ArticleManager
     }
     public function checkEditArticle($data){
         $reponse = array();
+        $isFormGood = true;
         if(isset($_FILES['article_image']['name']) && !empty($_FILES)){
             $data['article_image'] = $_FILES['article_image']['name'];
             $data['image_tmp_name'] = $_FILES['article_image']['tmp_name'];
@@ -99,24 +100,21 @@ class ArticleManager
         }
         if(isset($data['editor']) && empty($data['editor'])){
             $reponse['success'] = 'Veillez remplir le contenu';
+            $isFormGood = false;
         }
         if(isset($data['article_id']) && empty($data['article_id'])){
             $reponse['success'] = 'Veillez remplir les champs';
+            $isFormGood = false;
         }
         if(isset($data['article_title']) && empty($data['article_title'])){
             $reponse['success'] = 'Veillez remplir les champs';
+            $isFormGood = false;
         }
-        if(!empty($data['editor']) && !empty($data['article_title'])){
-            $reponse['success'] = 'ok';
-            $this->editArticle($data);
-        }
-        echo json_encode(['reponse'=>$reponse]);
-        exit(0);
+        $res['isFormGood'] = $isFormGood;
+        return $res;
 
     }
     public function editArticle($data){
-
-        var_dump($data);
         $image = '';
         $image_tmp_name = '';
         if (!empty($data['article_image']) && !empty($data['image_tmp_name'])) {
@@ -150,9 +148,6 @@ class ArticleManager
                     'id' => $id
                 ]);
         }
-
-        /*echo json_encode(array('reponse'=>true));
-        exit(0);*/
     }
     public function getArticleById($article_id)
     {
