@@ -14,7 +14,10 @@ php -r "unlink('composer-setup.php');"
 
 #### To create a admin:
 
-U have to create an account with "remcos75" as username=>"pseudo"
+U have to create an account with 
+
+"remcos75" as username=>"pseudo"  
+And "remcos75" as password=>"mot de passe"
 
 
 #### Create a directory config, with a file config.yml  
