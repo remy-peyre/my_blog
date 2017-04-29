@@ -20,6 +20,10 @@
                         <input type="text" class="none" name="article_old_image" value="{{ article['image'] }}">
                         <input type="submit" value="MODIFIER">
                     </form>
+                    <form  action="?action=edit_article" method="POST">
+                        <input class="none" type="text" name="id" value="{{ article['id'] }}">
+                        <input type="submit" class="edit_article_button" name="submit_delete_article" value="supprimer">
+                    </form>
                 </div>
             {% endfor %}
         </section>

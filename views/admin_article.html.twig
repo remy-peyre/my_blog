@@ -11,7 +11,7 @@
         {% for article in articles %}
             <tr>
                 <td>{{ article['id'] }}</td>
-                <td>{{ article['title'] }}</td>
+                <td>{{ article['title'][:20] }}...</td>
                 <td>{{ article['user_id'] }}</td>
                 <td>
                     <label for="{{ article['id'] }}">

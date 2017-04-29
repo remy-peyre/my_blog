@@ -48,6 +48,11 @@ class ArticleController extends BaseController
                      header('Location:?action=edit_article');
                  }
             }
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $articles->adminDeleteArticle((int)$_POST['id']);
+                header('Location:?action=edit_article');
+            }
             echo $this->renderView('edit_article.html.twig',
                 ['userArticles' => $userArticles, 'username' => $username,
                     'userIsConnect' => $userIsConnect]);

@@ -12,7 +12,7 @@
         {% for comment in comments %}
             <tr>
                 <td>{{ comment['id'] }}</td>
-                <td>{{ comment['content'] }}</td>
+                <td>{{ comment['content'][:20] }}</td>
                 <td>{{ comment['article_id'] }}</td>
                 <td>{{ comment['user_id'] }}</td>
                 <td>
