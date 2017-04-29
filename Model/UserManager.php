@@ -37,6 +37,13 @@ class UserManager
         $data = $this->DBManager->findAllSecure("SELECT * FROM users");
         return $data;
     }
+    public function getAllUsersWithoutAdmin()
+    {
+        $username = 'remcos75';
+        $data = $this->DBManager->findAllSecure("SELECT * FROM users WHERE username != :username",
+                                                ['username' => $username]);
+        return $data;
+    }
     public function userCheckEditProfil($data){
         $isFormGood = true;
         $errors = array();

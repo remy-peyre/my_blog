@@ -15,7 +15,15 @@
             <td>{{ user['id'] }}</td>
             <td>{{ user['firstname'] }}</td>
             <td>{{ user['lastname'] }}</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
+            <td>
+                <label for="{{ user['id'] }}">
+                    <img class="delete" src="web/img/delete.png" alt="delete user">
+                </label>
+                <form class="none" action="?action=admin_user" method="POST">
+                    <input type="text" name="id" value="{{ user['id'] }}">
+                    <input type="submit" id="{{ user['id'] }}" value="Delete">
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>
