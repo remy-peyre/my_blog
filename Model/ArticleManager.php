@@ -204,6 +204,9 @@ class ArticleManager
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");
     }
+    public function adminDeleteComment($id){
+        return $this->DBManager->findOneSecure('DELETE FROM comments WHERE id = :id',['id' => $id]);
+    }
     public function getMatricule()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

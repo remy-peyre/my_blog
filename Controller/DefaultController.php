@@ -33,13 +33,6 @@ class DefaultController extends BaseController
         }
 
 
-        $orig = 'J\'ai "sorti" le <strong>chien</strong> tout à l\'heure';
-        $a = htmlentities($orig);
-        $b = html_entity_decode($a);
-
-        //echo $b;
-
-
         foreach ($countComments as $key=>$item) {
             foreach ($item as $value){
                 $numberOfComments[$key] = $value['COUNT(*)'];
@@ -73,15 +66,11 @@ class DefaultController extends BaseController
             $numberOfComments = array();
             $id = $_SESSION['user_id'];
             $countComments = $article->countComments($_SESSION['user_id']);
-            //var_dump($countComments);
             $numberOfComments[$_SESSION['user_id']] = $countComments;
 
             foreach ($countArticles as $value) {
                 $numberOfArticles[$_SESSION['user_id']] = $value['COUNT(*)'];
             }
-            echo "<pre>";
-            //var_dump($numberOfComments);
-            echo "</pre>";
             $user = $manager->getUserById($_SESSION['user_id']);
             $username = $user['username'];
             $lastname = strtoupper($user['lastname']); //uppercase
@@ -223,6 +212,10 @@ class DefaultController extends BaseController
         if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75'){
             $manager = ArticleManager::getInstance();
             $comments = $manager->AllUsersComments();
+             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                 $manager->adminDeleteComment((int)$_POST['id']);
+                 header('Location:?action=admin_comment');
+             }
             echo $this->renderView('admin_comment.html.twig',
                                         ['comments' => $comments]);
         }

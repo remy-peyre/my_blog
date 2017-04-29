@@ -130,6 +130,10 @@ table{
 	text-align: center;
 }
 
+.none{
+	display : none;
+}
+
 @media screen and (min-width: 641px){
 	.left_part ul li{
 		font-size: 12px;

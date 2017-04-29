@@ -15,7 +15,15 @@
                 <td>{{ comment['content'] }}</td>
                 <td>{{ comment['article_id'] }}</td>
                 <td>{{ comment['user_id'] }}</td>
-                <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
+                <td>
+                    <label for="{{ comment['id'] }}">
+                    <img class="delete" src="web/img/delete.png" alt="delete user">
+                    </label>
+                    <form action="?action=admin_comment" class="none" method="POST">
+                        <input type="text" name="id" value="{{ comment['id'] }}">
+                        <input type="submit" id="{{ comment['id'] }}" value="Delete">
+                    </form>
+                </td>
             </tr>
         {% endfor %}
 
