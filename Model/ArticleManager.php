@@ -111,6 +111,20 @@ class ArticleManager
             $isFormGood = false;
         }
         $res['isFormGood'] = $isFormGood;
+        if ( ! empty($reponse)) {
+            // if there are items in our errors array, return those errors
+            $data['success'] = false;
+            $data['errors']  = $errors;
+        } else {
+            // if there are no errors process our form, then return a message
+            // DO ALL YOUR FORM PROCESSING HERE
+            // THIS CAN BE WHATEVER YOU WANT TO DO (LOGIN, SAVE, UPDATE, WHATEVER)
+            // show a message of success and provide a true success variable
+            $data['success'] = true;
+            $data['message'] = 'Success!';
+        }
+        // return all our data to an AJAX call
+        echo json_encode($data);
         return $res;
 
     }
@@ -215,7 +229,8 @@ class ArticleManager
         return $this->DBManager->findOneSecure('DELETE FROM articles WHERE id = :id',['id' => $id]);
     }
     public function adminDeleteUser($id){
-        $this->DBManager->findAllSecure('DELETE FROM articles WHERE user_id = :id',['id' => $id]);
+
+        $data = $this->DBManager->findAllSecure('DELETE FROM articles WHERE user_id = :id',['id' => $id]);
         return $this->DBManager->findOneSecure('DELETE FROM users WHERE id = :id',['id' => $id]);
     }
     public function getMatricule()
