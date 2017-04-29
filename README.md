@@ -1,4 +1,4 @@
-####Commands:
+#### Commands:
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"  
 
@@ -9,10 +9,15 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
 
-####Add file .sql in phpmyadmin
+#### Add file .sql in phpmyadmin
 
 
-####Create a directory config, with a file config.yml  
+#### To create a admin:
+
+U have to create an account with "remcos75" as username=>"pseudo"
+
+
+#### Create a directory config, with a file config.yml  
 
  routes:  
      home: 'Default:home'  

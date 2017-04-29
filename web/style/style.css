@@ -504,6 +504,18 @@ input::placeholder {
 	padding: 8px 15px;
 	border: 1px solid;
 }
+.edit_article_button_marge{
+	margin-left: 31%;
+	background-color: #444444;
+	border-radius: 3px;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 8px 15px;
+	border: 1px solid;
+	margin-top: 5px;
+}
 .area_button{
 	border-bottom: 2px dashed #f1f1f1 !important;
 	padding-bottom: 15px;
@@ -908,6 +920,11 @@ input::placeholder {
 		font-size: 16px;
 		height: 36px;
 	}
+	.edit_article_button_marge{
+		margin-left: 42%;
+		font-size: 16px;
+		height: 36px;
+	}
 	.area_button {
 		width: 90%;
 		margin-left: 5%;
@@ -1232,7 +1249,9 @@ input::placeholder {
 	.form_edit_article input[type=text] {
 		font-size: 18px;
 	}
-
+	.edit_article_button_marge {
+		margin-left: 43%;
+	}
 
 
 	/*--------------------*/
