@@ -13,7 +13,15 @@
                 <td>{{ article['id'] }}</td>
                 <td>{{ article['title'] }}</td>
                 <td>{{ article['user_id'] }}</td>
-                <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
+                <td>
+                    <label for="{{ article['id'] }}">
+                        <img class="delete" src="web/img/delete.png" alt="delete user">
+                    </label>
+                    <form class="none" action="?action=admin_article" method="POST">
+                        <input type="text" name="id" value="{{ article['id'] }}">
+                        <input type="submit" id="{{ article['id'] }}" value="Delete">
+                    </form>
+                </td>
             </tr>
         {% endfor %}
 
