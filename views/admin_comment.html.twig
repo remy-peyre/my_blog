@@ -9,47 +9,14 @@
             <th>User ID</th>
             <th class="size_delete">Supprimer</th>
         </tr>
-        <tr>
-            <td>11</td>
-            <td>content 1</td>
-            <td>50</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>content 2</td>
-            <td>51</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>content 3</td>
-            <td>52</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>content 3</td>
-            <td>52</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment['id'] }}</td>
+                <td>{{ comment['content'] }}</td>
+                <td>{{ comment['article_id'] }}</td>
+                <td>{{ comment['user_id'] }}</td>
+                <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
+            </tr>
+        {% endfor %}
 
-        <tr>
-            <td>13</td>
-            <td>content 3</td>
-            <td>52</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>content 3</td>
-            <td>52</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
     </table>{% endblock %}

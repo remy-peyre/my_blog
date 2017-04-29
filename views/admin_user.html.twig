@@ -9,48 +9,14 @@
             <th>Lastname</th>
             <th class="size_delete">Supprimer</th>
         </tr>
+        {% for user in users %}
         <tr>
-            <td>aaaaaa1A</td>
-            <td>20</td>
-            <td>aaaaaa1A</td>
-            <td>aaaaaa1A</td>
+            <td>{{ user['username'] }}</td>
+            <td>{{ user['id'] }}</td>
+            <td>{{ user['firstname'] }}</td>
+            <td>{{ user['lastname'] }}</td>
             <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
         </tr>
-        <tr>
-            <td>coucou1A</td>
-            <td>21</td>
-            <td>coucou1A</td>
-            <td>coucou1A</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>Vertragg05</td>
-            <td>22</td>
-            <td>Rémy</td>
-            <td>PEYRE</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>Pesudo</td>
-            <td>ID</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-
-        <tr>
-            <td>Pesudo</td>
-            <td>ID</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>Pesudo</td>
-            <td>ID</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
+        {% endfor %}
     </table>
 {% endblock %}

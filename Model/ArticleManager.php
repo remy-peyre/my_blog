@@ -197,6 +197,9 @@ class ArticleManager
     public function AllUsersArticles(){
         return $this->DBManager->findAllSecure('SELECT * FROM articles ORDER BY DATE DESC');
     }
+    public function AllUsersComments(){
+        return $this->DBManager->findAllSecure('SELECT * FROM comments ORDER BY DATE DESC');
+    }
     public function getDatetimeNow() {
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");

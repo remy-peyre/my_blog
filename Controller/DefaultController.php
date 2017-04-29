@@ -186,52 +186,52 @@ class DefaultController extends BaseController
                 'userIsConnect' => $userIsConnect]);
     }
 
-    public function saisonAction()
-    {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('saison.html.twig');
-        else
-            $this->redirect('login');
-    }
-
     public function adminAction()
     {
-        if (!empty($_SESSION['user_id']))
+        if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75'){
             echo $this->renderView('admin.html.twig');
+        }
         else
             $this->redirect('login');
     }
 
     public function admin_userAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('admin_user.html.twig');
+        if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75') {
+            $manager = UserManager::getInstance();
+            $users = $manager->getAllUsers();
+            echo $this->renderView('admin_user.html.twig',
+                                        ['users' => $users]);
+        }
         else
             $this->redirect('login');
     }
 
     public function admin_articleAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('admin_article.html.twig');
-        else
+        if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75') {
+            $manager = ArticleManager::getInstance();
+            $articles = $manager->AllUsersArticles();
+            echo $this->renderView('admin_article.html.twig',
+                                        ['articles' => $articles]);
+        }else
             $this->redirect('login');
     }
 
     public function admin_commentAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('admin_comment.html.twig');
+        if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75'){
+            $manager = ArticleManager::getInstance();
+            $comments = $manager->AllUsersComments();
+            echo $this->renderView('admin_comment.html.twig',
+                                        ['comments' => $comments]);
+        }
         else
             $this->redirect('login');
     }
 
     public function errorAction()
     {
-        /*if (!empty($_SESSION['user_id']))
-            echo $this->renderView('error.html.twig');
-        else
-            $this->redirect('error');*/
         echo $this->renderView('error.html.twig');
     }
 }

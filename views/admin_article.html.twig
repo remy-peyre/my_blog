@@ -8,42 +8,14 @@
             <th>User id</th>
             <th class="size_delete">Supprimer</th>
         </tr>
-        <tr>
-            <td>50</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>51</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>52</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>XX</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article['id'] }}</td>
+                <td>{{ article['title'] }}</td>
+                <td>{{ article['user_id'] }}</td>
+                <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
+            </tr>
+        {% endfor %}
 
-        <tr>
-            <td>XX</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
-        <tr>
-            <td>XX</td>
-            <td>The Walking Dead</td>
-            <td>22</td>
-            <td><img class="delete" src="web/img/delete.png" alt="delete user"></td>
-        </tr>
     </table>
 {% endblock %}
