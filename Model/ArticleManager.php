@@ -166,6 +166,9 @@ class ArticleManager
         $article['matricule'] = $this->getMatricule();
         move_uploaded_file($data['image_tmp_name'],$pathImage);
         $this->DBManager->insert('articles', $article);
+        $date = $this->DBManager->give_me_date();
+        $actions = $date . ' -- ' .$data['username'] . ' has just add article'."\n";
+        $this->DBManager->watch_action_log('success.log',$actions);
     }
     public function userArticles(){
         $id_user = $_SESSION['user_id'];

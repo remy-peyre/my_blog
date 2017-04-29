@@ -137,6 +137,9 @@ class UserManager
         }
         else
         {
+            $date = $this->DBManager->give_me_date();
+            $actions = $date . ' -- ' .$data['username'] . ' hasn\'t register with password : '.$hash."\n";
+            $this->DBManager->watch_action_log('security.log',$actions);
             echo(json_encode(array('success'=>false, 'errors'=>$errors), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
             exit(0);
 
@@ -153,6 +156,9 @@ class UserManager
         $user['birthday'] = $data['birthday'];
         mkdir('uploads/'.$user["username"]);
         $this->DBManager->insert('users', $user);
+        $date = $this->DBManager->give_me_date();
+        $actions = $date . ' -- ' .$data['username'] . ' has just register : '."\n";
+        $this->DBManager->watch_action_log('access.log',$actions);
     }
     public function userCheckLogin($data)
     {
@@ -179,6 +185,9 @@ class UserManager
         }
         else
         {
+            $date = $this->DBManager->give_me_date();
+            $actions = $date . ' -- ' .$data['username'] . ' hasn\'t login with password : '.$hash."\n";
+            $this->DBManager->watch_action_log('security.log',$actions);
             echo(json_encode(array('success'=>false, 'errors'=>$errorsLogin), JSON_UNESCAPED_UNICODE ,http_response_code(400)));
             exit(0);
         }
@@ -192,6 +201,9 @@ class UserManager
             return false;
         $_SESSION['user_id'] = $data['id'];
         $_SESSION['user_username'] = $data['username'];
+        $date = $this->DBManager->give_me_date();
+        $actions = $date . ' -- ' .$username . ' has just login.' ."\n";
+        $this->DBManager->watch_action_log('access.log',$actions);
         return true;
     }
 

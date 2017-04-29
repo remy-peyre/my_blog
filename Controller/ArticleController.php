@@ -48,7 +48,6 @@ class ArticleController extends BaseController
                      header('Location:?action=edit_article');
                  }
             }
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $articles->adminDeleteArticle((int)$_POST['id']);
                 header('Location:?action=edit_article');
