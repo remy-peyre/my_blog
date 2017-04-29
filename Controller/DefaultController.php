@@ -188,7 +188,12 @@ class DefaultController extends BaseController
     {
         if (!empty($_SESSION['user_id']) && $_SESSION['user_username'] == 'remcos75') {
             $manager = UserManager::getInstance();
-            $users = $manager->getAllUsers();
+            $articles = ArticleManager::getInstance();
+            $users = $manager->getAllUsersWithoutAdmin();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $articles->adminDeleteUser((int)$_POST['id']);
+                header('Location:?action=admin_user');
+            }
             echo $this->renderView('admin_user.html.twig',
                                         ['users' => $users]);
         }

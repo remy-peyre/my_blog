@@ -211,6 +211,10 @@ class ArticleManager
         $this->DBManager->findAllSecure('DELETE FROM comments WHERE article_id = :id',['id' => $id]);
         return $this->DBManager->findOneSecure('DELETE FROM articles WHERE id = :id',['id' => $id]);
     }
+    public function adminDeleteUser($id){
+        $this->DBManager->findAllSecure('DELETE FROM articles WHERE user_id = :id',['id' => $id]);
+        return $this->DBManager->findOneSecure('DELETE FROM users WHERE id = :id',['id' => $id]);
+    }
     public function getMatricule()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
