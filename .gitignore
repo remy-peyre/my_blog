@@ -10,3 +10,4 @@
 /config
 !/cache/twig/.gitkeep
 !/uploads/.gitkeep
+/uploads
