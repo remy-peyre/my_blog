@@ -91,7 +91,6 @@ class ArticleManager
         $this->DBManager->insert('comments', $comment);
     }
     public function checkEditArticle($data){
-        $reponse = array();
         $isFormGood = true;
         if(isset($_FILES['article_image']['name']) && !empty($_FILES)){
             $data['article_image'] = $_FILES['article_image']['name'];
@@ -99,20 +98,16 @@ class ArticleManager
             $res['data'] = $data;
         }
         if(isset($data['editor']) && empty($data['editor'])){
-            $reponse['success'] = 'Veillez remplir le contenu';
             $isFormGood = false;
         }
         if(isset($data['article_id']) && empty($data['article_id'])){
-            $reponse['success'] = 'Veillez remplir les champs';
             $isFormGood = false;
         }
-        if(isset($data['article_title']) && empty($data['article_title'])){
-            $reponse['success'] = 'Veillez remplir les champs';
+        if(isset($data['article_title']) && empty($data['article_title'])) {
             $isFormGood = false;
         }
         $res['isFormGood'] = $isFormGood;
         return $res;
-
     }
     public function editArticle($data){
         $image = '';

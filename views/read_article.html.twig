@@ -29,7 +29,17 @@
                             {{userWhoComment[comment['user_id']] }} :
                         </a>
                         <span>{{ dateComment[comment['id']] }}</span>
-
+                        {% if userConnect == userWhoComment[comment['user_id']] or
+                            username[article['user_id']] == userConnect %}
+                            <!--<label for="{{ article['matricule'] }}">
+                                <img class="delete" src="web/img/delete.png" alt="delete user">
+                            </label>-->
+                            <form  action="?action=read_article&article={{ article['matricule'] }}" method="POST">
+                                <input type="text" class="none" name="id_comment" value="{{ comment['id'] }}">
+                                <input type="text" class="none" name="matricule" value="{{ article['matricule'] }}">
+                                <input type="submit" class="edit_article_button_marge" id="{{ article['matricule'] }}" name="submit_delete_comment" value="supprimer">
+                            </form>
+                        {% endif %}
                     </p>
                     <p>
                         {{ comment['content'] }}

@@ -116,6 +116,7 @@ class DefaultController extends BaseController
         $username = array();
         $userIsConnect = '';
 
+
         if(!empty($_SESSION['user_id'])){
             $userIsConnect = true;
         }
@@ -140,6 +141,11 @@ class DefaultController extends BaseController
                 $articles->userInsertComment($_POST);
                 header('Location:?action=read_article&article='.$_GET['article']);
             }
+        }
+
+        if (isset($_POST['submit_delete_comment'])) {
+            $articles->adminDeleteComment((int)$_POST['id_comment']);
+            header('Location:?action=read_article&article='.$_POST['matricule']);
         }
         echo $this->renderView('read_article.html.twig',
             ['AllUsersArticles' => $AllUsersArticles,
