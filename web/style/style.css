@@ -494,7 +494,7 @@ input::placeholder {
 }
 /*---- Button ----*/
 .edit_article_button{
-	margin-left: 35%;
+	/*margin-left: 35%;*/
 	background-color: #444444;
 	border-radius: 3px;
 	color: #ffffff;
@@ -505,7 +505,7 @@ input::placeholder {
 	border: 1px solid;
 }
 .edit_article_button_marge{
-	margin-left: 31%;
+	/*margin-left: 31%;*/
 	background-color: #444444;
 	border-radius: 3px;
 	color: #ffffff;
@@ -521,6 +521,7 @@ input::placeholder {
 	padding-bottom: 15px;
 	width: 80%;
 	margin-left: 10%;
+	text-align: center;
 }
 .form_edit_article input[type=text]{
 	width: 100%;
@@ -531,7 +532,7 @@ input::placeholder {
 	margin-bottom: 10px;
 }
 .form_edit_article input[type=submit]{
-	margin-left: 35%;
+	/*margin-left: 35%;*/
 	background-color: #216288;
 	border: 1px solid #17445e;
 	padding: 5px 15px 5px 15px;
@@ -610,6 +611,10 @@ input::placeholder {
 	width: 80%;
 	margin-left: 10%;
 	margin-bottom: 10px;
+}
+.delete{
+	float: right;
+	width: 15px;
 }
 .pseudo_comm{
 	font-style: italic;
@@ -916,12 +921,12 @@ input::placeholder {
 
 	/*---- Button ----*/
 	.edit_article_button {
-		margin-left: 45%;
+		/*margin-left: 45%;*/
 		font-size: 16px;
 		height: 36px;
 	}
 	.edit_article_button_marge{
-		margin-left: 42%;
+		/*margin-left: 42%;*/
 		font-size: 16px;
 		height: 36px;
 	}
@@ -930,10 +935,7 @@ input::placeholder {
 		margin-left: 5%;
 	}
 	.form_edit_article input[type=submit] {
-		margin-left: 45%;
-	}
-	.form_edit_article input[type=submit] {
-		margin-left: 45%;
+		/*margin-left: 45%;*/
 		font-size: 16px;
 		height: 36px;
 	}
@@ -1242,7 +1244,7 @@ input::placeholder {
 		width: 90%;
 	}
 	.position_tablet_edit{
-		margin-left: 30%;
+		/*margin-left: 30%;*/
 		width: 400px;
 	}
 	/*---- Button ----*/
@@ -1250,7 +1252,7 @@ input::placeholder {
 		font-size: 18px;
 	}
 	.edit_article_button_marge {
-		margin-left: 43%;
+		/*margin-left: 43%;*/
 	}
 
 
